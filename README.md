@@ -20,5 +20,5 @@ Students at Lambda School need a place where they can escalate their concerns an
 * Resolve the ticket
 
 ### Stretch
-Build an integrated slack-bot that allows students to submit help tickets through slack.
-Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
+* Build an integrated slack-bot that allows students to submit help tickets through slack.
+* Allow the ability to subscribe to the Queue in slack to be notified if someone opens a ticket.
