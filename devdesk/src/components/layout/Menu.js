@@ -35,6 +35,7 @@ const Menu = () => {
       </div>
       <div>
         <StyledNavLink to="/">Home</StyledNavLink>
+        <StyledNavLink to="/protected">Dashboard</StyledNavLink>
         <StyledNavLink to="/Login">Login</StyledNavLink>
       </div>
     </SNav>
