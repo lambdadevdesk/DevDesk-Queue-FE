@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { SForm, TicketH1 } from "../helpers/index";
 
 class TicketForm extends Component {
   state = {
@@ -29,44 +30,52 @@ class TicketForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} action="">
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="title"
-            placeholder="Title"
-            value={this.state.title}
-          />
-        </div>
-        <div>
-          <label htmlFor="short_description">Short Description</label>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="short_description"
-            placeholder="Short Description"
-            value={this.state.shortDescription}
-          />
-        </div>
-        <div>
-          <select name="category" id="">
-            <option value="option1">option1</option>
-            <option value="option2">option2</option>
-            <option value="option3">option3</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
-            onChange={this.handleChange}
-            type="textarea"
-            name="description"
-            value={this.state.description}
-          />
-        </div>
-      </form>
+      <>
+        <TicketH1>Subimt A Ticket</TicketH1>
+        <SForm onSubmit={this.handleSubmit} action="">
+          <div className="field">
+            <label htmlFor="title">Title:</label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="title"
+              placeholder="Title"
+              value={this.state.title}
+            />
+          </div>
+          <div className="field">
+            <label className="field-label" htmlFor="short_description">
+              Short Description:
+            </label>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="short_description"
+              placeholder="Short Description"
+              value={this.state.shortDescription}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="category"> Category:</label>
+            <select name="category" id="">
+              <option value="option1">option1</option>
+              <option value="option2">option2</option>
+              <option value="option3">option3</option>
+            </select>
+          </div>
+          <div className="field">
+            <label htmlFor="description">Description:</label>
+            <textarea
+              onChange={this.handleChange}
+              type="textarea"
+              name="description"
+              value={this.state.description}
+            />
+          </div>
+
+          <button type="submit">Submit</button>
+        </SForm>
+      </>
     );
   }
 }
