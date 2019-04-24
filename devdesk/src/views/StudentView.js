@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 
 // import ticketList
 //
-class AdminView extends React.Component {
+class StudentView extends React.Component {
   render() {
     return (
       <div>
-        <h1>Admins</h1>
+        <h1>Students</h1>
       </div>
     );
   }
@@ -17,4 +17,4 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(AdminView);
+export default connect(mapStateToProps)(StudentView);
