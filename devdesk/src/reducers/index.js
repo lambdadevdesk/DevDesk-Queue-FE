@@ -49,6 +49,7 @@ const initialState = {
       shortDescription: "",
       description: "",
       category: [],
+      comments: [],
       resolved: false,
       assigned: false
     }
