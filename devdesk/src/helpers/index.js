@@ -195,15 +195,30 @@ export const SForm = styled.form`
 export const DashDiv = styled.div`
   display: flex;
   .dash-panel {
-    width: 25%;
+    width: 15%;
     height: 81vh;
     background: #efeff3;
   }
   .dash-main {
-    width: 75%;
+    width: 85%;
   }
 
   .profile-panel {
     text-align: center;
+  }
+`;
+
+// Styles for Dashboard Menu
+
+export const DashNav = styled.nav`
+  color: #bb1333;
+  text-align: center;
+
+  li:nth-child(odd) {
+    background: #f7f7f7;
+  }
+  li {
+    cursor: pointer;
+    padding: 1rem 0;
   }
 `;

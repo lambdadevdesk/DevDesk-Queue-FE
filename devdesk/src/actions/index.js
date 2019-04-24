@@ -72,3 +72,20 @@ export const deleteTicket = id => dispatch => {
       dispatch({ type: DELETE_TICKET_FAIL, payload: err.response });
     });
 };
+
+//Test actions and action creators to test form functionality
+
+export const ADD_TEST_TICKET = "ADD_TEST_TICKET";
+export const CREATE_TEST_TICKET = "CREATE_TEST_TICKET";
+export const VIEW_TEST_TICKETS = "VIEW_TEST_TICKETS";
+
+export const testAddTicket = newTicket => dispatch => {
+  dispatch({ type: ADD_TEST_TICKET, payload: newTicket });
+};
+
+export const createTicket = () => dispatch => {
+  dispatch({ type: CREATE_TEST_TICKET });
+};
+export const viewTickets = () => dispatch => {
+  dispatch({ type: VIEW_TEST_TICKETS });
+};

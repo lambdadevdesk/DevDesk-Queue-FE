@@ -10,7 +10,10 @@ import {
   EDIT_TICKET_FAIL,
   DELETE_TICKET_START,
   DELETE_TICKET_SUCCESS,
-  DELETE_TICKET_FAIL
+  DELETE_TICKET_FAIL,
+  ADD_TEST_TICKET,
+  CREATE_TEST_TICKET,
+  VIEW_TEST_TICKETS
 } from "../actions";
 
 const initialState = {
@@ -44,16 +47,27 @@ const initialState = {
   ],
   tickets: [
     {
-      id: "",
-      title: "",
-      shortDescription: "",
-      description: "",
-      category: [],
+      id: "0",
+      title: "Reduce method not working",
+      description:
+        "words.reduce( word => word....) Doesn't work. Please explain reduce to me",
+      category: "JavaScript",
+      comments: [],
+      resolved: false,
+      assigned: false
+    },
+    {
+      id: "1",
+      title: "I can't deploy to Netlify",
+      description:
+        "Netlify Keeps giving me an error message when I go to deploy my react Application. Please Help",
+      category: "React",
       comments: [],
       resolved: false,
       assigned: false
     }
-  ]
+  ],
+  categories: ["React", "JavaScript", "HTML", "CSS"]
 };
 
 const reducers = (state = initialState, action) => {
@@ -129,6 +143,24 @@ const reducers = (state = initialState, action) => {
         ...state,
         updatingTicket: false,
         error: action.payload
+      };
+    // Test Reducers to testing form functionality
+    case ADD_TEST_TICKET:
+      return {
+        ...state,
+        error: "",
+        tickets: [...state.tickets, action.payload],
+        creatingTicket: false
+      };
+    case CREATE_TEST_TICKET:
+      return {
+        ...state,
+        creatingTicket: true
+      };
+    case VIEW_TEST_TICKETS:
+      return {
+        ...state,
+        creatingTicket: false
       };
     default:
       return state;

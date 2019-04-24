@@ -1,9 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import TicketForm from "./TicketForm";
+import TicketList from "./TicketList";
+import DashboardMenu from "./DashboardMenu";
 import { DashDiv } from "../helpers";
 
-const Dashboard = () => {
+const Dashboard = props => {
   return (
     <DashDiv>
       <div className="dash-panel">
@@ -17,12 +20,18 @@ const Dashboard = () => {
             <p>Full.Name@example.com</p>
           </div>
         </div>
+        <DashboardMenu />
       </div>
       <div className="dash-main">
-        <TicketForm />
+        {props.creatingTicket ? <TicketForm /> : <TicketList />}
       </div>
     </DashDiv>
   );
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    creatingTicket: state.creatingTicket
+  };
+};
+export default connect(mapStateToProps)(Dashboard);
