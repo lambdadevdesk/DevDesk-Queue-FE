@@ -13,11 +13,11 @@ const Dashboard = props => {
         <div className="profile-panel">
           <div className="profile-header">
             <img src="" alt="" />
-            <h1>Full Name</h1>
+            <h1>{props.student.name}</h1>
           </div>
           <div className="profile-content">
-            <p>FSWPT 4</p>
-            <p>Full.Name@example.com</p>
+            <p>{props.student.cohort}</p>
+            <p>{props.student.email}</p>
           </div>
         </div>
         <DashboardMenu />
