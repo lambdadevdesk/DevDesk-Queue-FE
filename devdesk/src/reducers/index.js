@@ -33,7 +33,7 @@ const initialState = {
       name: "",
       email: "",
       cohort: "",
-      isStudent: true,
+      isAdmin: false,
       openedTickets: []
     }
   ],
@@ -68,7 +68,7 @@ const initialState = {
       assigned: false
     }
   ],
-  categories: ["React", "JavaScript", "HTML", "CSS"]
+  categories: ["----", "React", "JavaScript", "HTML", "CSS"]
 };
 
 const reducers = (state = initialState, action) => {
