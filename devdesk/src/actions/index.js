@@ -1,4 +1,5 @@
 import axios from "axios";
+import { bindActionCreators } from "redux";
 
 export const FETCH_DATA_START = "FETCH_DATA_START";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
@@ -73,7 +74,9 @@ export const deleteTicket = id => dispatch => {
     });
 };
 
+//
 //Test actions and action creators to test form functionality
+//
 
 export const ADD_TEST_TICKET = "ADD_TEST_TICKET";
 export const CREATE_TEST_TICKET = "CREATE_TEST_TICKET";
@@ -88,4 +91,18 @@ export const createTicket = () => dispatch => {
 };
 export const viewTickets = () => dispatch => {
   dispatch({ type: VIEW_TEST_TICKETS });
+};
+
+//
+//  Test Actions and Action Creators to test delete functionality
+//
+
+export const DELETE_TEST_TICKET_SUCCESS = "DELETE_TEST_TICKET_SUCCESS";
+
+
+export const testDeleteTicket = id => {
+  return {
+    type: DELETE_TEST_TICKET_SUCCESS,
+    id: id
+  }
 };

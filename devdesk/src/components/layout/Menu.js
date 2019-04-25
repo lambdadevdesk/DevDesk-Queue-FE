@@ -10,6 +10,7 @@ const Menu = () => {
         <MenuH1>DevDesk Queue</MenuH1>
       </div>
       <div>
+        <NavLink to="/admin_view">Admin View</NavLink>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/Login">Login</NavLink>
