@@ -55,7 +55,8 @@ const initialState = {
       category: "JavaScript",
       comments: [],
       resolved: false,
-      assigned: false
+      assigned: false,
+      createdBY: {}
     },
     {
       id: 1,
