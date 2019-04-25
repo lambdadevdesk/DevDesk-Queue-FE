@@ -99,10 +99,9 @@ export const viewTickets = () => dispatch => {
 
 export const DELETE_TEST_TICKET_SUCCESS = "DELETE_TEST_TICKET_SUCCESS";
 
-
 export const testDeleteTicket = id => {
   return {
     type: DELETE_TEST_TICKET_SUCCESS,
-    id: id
-  }
+    payload: id
+  };
 };
