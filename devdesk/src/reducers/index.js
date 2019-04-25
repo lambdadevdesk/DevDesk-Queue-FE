@@ -13,7 +13,8 @@ import {
   DELETE_TICKET_FAIL,
   ADD_TEST_TICKET,
   CREATE_TEST_TICKET,
-  VIEW_TEST_TICKETS
+  VIEW_TEST_TICKETS,
+  DELETE_TEST_TICKET_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -162,6 +163,13 @@ const reducers = (state = initialState, action) => {
         ...state,
         creatingTicket: false
       };
+      // Testing Delete
+      case DELETE_TEST_TICKET_SUCCESS:
+      return {
+        ...state,
+        tickets: [...state.tickets, action.payload]
+      }
+
     default:
       return state;
   }
