@@ -18,8 +18,8 @@ class TicketList extends React.Component {
       <div>
         {this.props.tickets.map(ticket => (
           <TicketItem
-            ticket={ticket}
             key={ticket.id}
+            id={ticket.id}
             title={ticket.title}
             category={ticket.category}
             description={ticket.description}

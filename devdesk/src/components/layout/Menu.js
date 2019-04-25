@@ -11,8 +11,8 @@ const Menu = () => {
       </div>
       <div>
         <NavLink to="/admin_view">Admin View</NavLink>
+        <NavLink to="/student_view">Student View</NavLink>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/Login">Login</NavLink>
       </div>
     </MenuNav>

@@ -48,7 +48,7 @@ const initialState = {
   ],
   tickets: [
     {
-      id: "0",
+      id: 0,
       title: "Reduce method not working",
       description:
         "words.reduce( word => word....) Doesn't work. Please explain reduce to me",
@@ -58,7 +58,7 @@ const initialState = {
       assigned: false
     },
     {
-      id: "1",
+      id: 1,
       title: "I can't deploy to Netlify",
       description:
         "Netlify Keeps giving me an error message when I go to deploy my react Application. Please Help",
@@ -68,7 +68,7 @@ const initialState = {
       assigned: false
     }
   ],
-  categories: ["----", "React", "JavaScript", "HTML", "CSS"]
+  categories: ["None", "React", "JavaScript", "HTML", "CSS"]
 };
 
 const reducers = (state = initialState, action) => {
@@ -163,12 +163,12 @@ const reducers = (state = initialState, action) => {
         ...state,
         creatingTicket: false
       };
-      // Testing Delete
-      case DELETE_TEST_TICKET_SUCCESS:
+    // Testing Delete
+    case DELETE_TEST_TICKET_SUCCESS:
       return {
         ...state,
-        tickets: [...state.tickets, action.payload]
-      }
+        tickets: state.tickets.filter(ticket => ticket.id !== action.payload)
+      };
 
     default:
       return state;
