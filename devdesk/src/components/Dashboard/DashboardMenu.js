@@ -1,16 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { DashNav } from "../../helpers";
 import { createTicket, viewTickets } from "../../actions";
+import ProfileCard from "../ProfileCard";
 
 const DashboardMenu = props => {
   return (
-    <DashNav>
+    <DashNav className="dash-panel">
+      <ProfileCard />
       <ul>
-        <li onClick={() => props.createTicket()}>Create Ticket</li>
-        <li>My Tickets</li>
-        <li onClick={() => props.viewTickets()}>Opened Tickets</li>
+        <li>
+          <Link to="/new-ticket">Create Ticket</Link>
+        </li>
+        <li>
+          <Link to="/my-tickets">My Tickets</Link>
+        </li>
+        <li>
+          <Link to="/tickets">Opened Tickets</Link>
+        </li>
+        <li>Claimed Tickets</li>
       </ul>
     </DashNav>
   );

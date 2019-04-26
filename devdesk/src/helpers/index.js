@@ -112,7 +112,6 @@ export const LoginHeader = styled.div`
   margin: 4rem 0 1rem;
 
   img {
-    display: inline;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -192,7 +191,7 @@ export const SForm = styled.form`
 
 // Styles for Dashboard Component
 
-export const DashDiv = styled.div`
+export const DashboardDiv = styled.div`
   display: flex;
   .dash-panel {
     width: 15%;
@@ -220,5 +219,9 @@ export const DashNav = styled.nav`
   li {
     cursor: pointer;
     padding: 1rem 0;
+  }
+  a {
+    text-decoration: none;
+    color: #bb1333;
   }
 `;
