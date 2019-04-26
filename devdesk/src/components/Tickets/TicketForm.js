@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { SForm, TicketH1 } from "../../helpers";
 import { testAddTicket } from "../../actions";
+import Dashboard from "../Dashboard/Dashboard";
 
 class TicketForm extends Component {
   state = {
@@ -37,7 +38,7 @@ class TicketForm extends Component {
   render() {
     console.log(this.props.tickets);
     return (
-      <>
+      <Dashboard>
         <TicketH1>Submit A Ticket</TicketH1>
         <SForm onSubmit={this.handleSubmit} action="">
           <div className="field">
@@ -72,7 +73,7 @@ class TicketForm extends Component {
 
           <button type="submit">Submit</button>
         </SForm>
-      </>
+      </Dashboard>
     );
   }
 }

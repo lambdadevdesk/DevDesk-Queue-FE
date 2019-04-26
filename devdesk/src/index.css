@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Lato");
 
 html,
 body,
@@ -126,4 +127,11 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: "Lato", sans-serif;
 }

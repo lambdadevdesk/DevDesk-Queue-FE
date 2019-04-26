@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Dashboard from "../components/Dashboard/Dashboard";
+import TicketList from "../components/Tickets/TicketList";
 
 class StudentView extends React.Component {
   state = {
@@ -14,7 +14,7 @@ class StudentView extends React.Component {
     }
   };
   render() {
-    return <Dashboard student={this.state.student} />;
+    return <TicketList student={this.state.student} />;
   }
 }
 

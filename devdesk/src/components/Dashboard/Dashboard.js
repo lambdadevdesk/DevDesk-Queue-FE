@@ -1,31 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import TicketForm from "../Tickets/TicketForm";
-import TicketList from "../Tickets/TicketList";
 import DashboardMenu from "./DashboardMenu";
-import { DashDiv } from "../../helpers";
+// import DashboardArea from "./DashboardArea";
+import { DashboardDiv } from "../../helpers";
 
 const Dashboard = props => {
   return (
-    <DashDiv>
-      <div className="dash-panel">
-        <div className="profile-panel">
-          <div className="profile-header">
-            <img src="" alt="" />
-            <h1>{props.student.name}</h1>
-          </div>
-          <div className="profile-content">
-            <p>{props.student.cohort}</p>
-            <p>{props.student.email}</p>
-          </div>
-        </div>
-        <DashboardMenu />
-      </div>
-      <div className="dash-main">
-        {props.creatingTicket ? <TicketForm /> : <TicketList />}
-      </div>
-    </DashDiv>
+    <DashboardDiv>
+      <DashboardMenu userRole="Test" />
+      <div className="dash-main">{props.children}</div>
+    </DashboardDiv>
   );
 };
 
@@ -34,4 +19,5 @@ const mapStateToProps = state => {
     creatingTicket: state.creatingTicket
   };
 };
-export default connect(mapStateToProps)(Dashboard);
+
+export default connect()(Dashboard);
