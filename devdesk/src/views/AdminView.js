@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import TicketList from '../components/TicketList';
-import AdminDashMenu from '../components/AdminDashMenu';
+import TicketList from "../components/Tickets/TicketList";
+import AdminDashMenu from "../components/Dashboard/AdminDashMenu";
 import { DashDiv } from "../helpers";
-import TicketForm from "../components/TicketForm";
+import TicketForm from "../components/Tickets/TicketForm";
 
 const AdminView = props => {
   return (
@@ -30,9 +30,8 @@ const AdminView = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state)
+  console.log(state);
   return state;
-  
 };
 
 export default connect(mapStateToProps)(AdminView);

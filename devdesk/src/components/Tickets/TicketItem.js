@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../ProfileCard";
 
 const TicketItem = props => {
   return (

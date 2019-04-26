@@ -14,7 +14,8 @@ import {
   ADD_TEST_TICKET,
   CREATE_TEST_TICKET,
   VIEW_TEST_TICKETS,
-  DELETE_TEST_TICKET_SUCCESS
+  DELETE_TEST_TICKET_SUCCESS,
+  UPDATE_TEST_TICKET
 } from "../actions";
 
 const initialState = {
@@ -175,7 +176,10 @@ const reducers = (state = initialState, action) => {
         ...state,
         tickets: state.tickets.filter(ticket => ticket.id !== action.payload)
       };
-
+    case UPDATE_TEST_TICKET:
+      return {
+        ...state
+      };
     default:
       return state;
   }

@@ -43,7 +43,7 @@ class Login extends Component {
           <button type="submit">Login</button>
           <div className="extra">
             <p>
-              Don't have an Accout? <a href="">Sign up</a>
+              Don't have an Accout? <a href="#!">Sign up</a>
             </p>
           </div>
         </LoginForm>

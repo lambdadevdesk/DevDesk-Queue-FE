@@ -1,5 +1,5 @@
 import axios from "axios";
-import { bindActionCreators } from "redux";
+// import { bindActionCreators } from "redux";
 
 export const FETCH_DATA_START = "FETCH_DATA_START";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
@@ -80,10 +80,10 @@ export const login = () => dispatch => {
   return {
     type: LOGIN_SUCCESS,
     payload: {
-      token: ''
+      token: ""
     }
-  }
-}
+  };
+};
 
 //
 //Test actions and action creators to test form functionality
@@ -115,4 +115,14 @@ export const testDeleteTicket = id => {
     type: DELETE_TEST_TICKET_SUCCESS,
     payload: id
   };
+};
+
+export const UPDATE_TEST_TICKET = "UPDATE_TEST_TICKET";
+
+export const updateTestTicket = (ticket, id) => dispatch => {
+  dispatch({
+    type: UPDATE_TEST_TICKET,
+    ticket,
+    id
+  });
 };

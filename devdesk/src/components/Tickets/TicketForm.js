@@ -1,30 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { SForm, TicketH1 } from "../helpers/index";
-import { editTicket } from "../actions/index";
+import { SForm, TicketH1 } from "../../helpers";
+import { testAddTicket } from "../../actions";
 
-class EditTicket extends Component {
+class TicketForm extends Component {
   state = {
     ticket: {
       id: "",
       title: "",
       description: "",
-      category: ""
+      category: "",
+      comments: [],
+      resolved: false,
+      assigned: false
     }
   };
-
-  componentDidMount() {
-    const id = Number(this.props.match.params.id);
-    let ticketById = this.props.tickets.filter(ticket => ticket.id === id);
-    ticketById = ticketById[0];
-    this.setState({
-      id: ticketById.id,
-      title: ticketById.title,
-      description: ticketById.description,
-      category: ticketById.category
-    });
-  }
 
   handleChange = e => {
     this.setState({
@@ -32,21 +23,19 @@ class EditTicket extends Component {
     });
   };
 
-  editTicket = event => {
-    event.preventDefault();
-    const updatedTicket = {
-      title: this.state.title,
-      description: this.state.description,
-      category: this.state.category
-    };
-    this.props.editTicket(this.state.id, updatedTicket);
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.testAddTicket(this.state.ticket);
     this.setState({
-      title: "",
-      description: "",
-      category: ""
+      ticket: {
+        title: "",
+        description: ""
+      }
     });
   };
+
   render() {
+    console.log(this.props.tickets);
     return (
       <>
         <TicketH1>Submit A Ticket</TicketH1>
@@ -81,7 +70,7 @@ class EditTicket extends Component {
             />
           </div>
 
-          <button type="submit">Edit Ticket</button>
+          <button type="submit">Submit</button>
         </SForm>
       </>
     );
@@ -97,5 +86,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { editTicket }
-)(EditTicket);
+  { testAddTicket }
+)(TicketForm);
