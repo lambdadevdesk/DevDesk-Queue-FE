@@ -10,7 +10,9 @@ import HomePage from "./components/HomePage";
 // Testing
 import AdminView from "./views/AdminView";
 import StudentView from "./views/StudentView";
+
 import TicketForm from "./components/Tickets/TicketForm";
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
         <Route path="/new-ticket" component={TicketForm} />
         <PrivateRoute exact path="/student_view" component={StudentView} />
         <PrivateRoute exact path="/admin_view" component={AdminView} />
+        <Route path="edit/:id" render={props => <EditTicket {...props} />} />
       </Layout>
     </Router>
   );
