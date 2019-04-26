@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/student_view" component={StudentView} />
         <PrivateRoute exact path="/admin_view" component={AdminView} />
-        <Route path="edit/:id" render={(props)=> <Component {...props} />
+        <Route path="edit/:id" render={props => <EditTicket {...props} />} />
       </Layout>
     </Router>
   );
