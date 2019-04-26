@@ -29,19 +29,19 @@ const initialState = {
   error: null,
   students: [
     {
-      id: "",
-      name: "",
-      email: "",
-      cohort: "",
+      id: 1337,
+      name: "Mace Windu",
+      email: "Mace.Windu@2ez.gg",
+      cohort: "FSWPT - 4",
       isAdmin: false,
       openedTickets: []
     }
   ],
   admins: [
     {
-      id: "",
-      name: "",
-      email: "",
+      id: 1007,
+      name: "Admin",
+      email: "Admin@example.com",
       isAdmin: true,
       myTickets: []
     }
@@ -56,7 +56,9 @@ const initialState = {
       comments: [],
       resolved: false,
       assigned: false,
-      createdBY: {}
+      createdBY: {
+        id: 1337
+      }
     },
     {
       id: 1,
@@ -66,7 +68,10 @@ const initialState = {
       category: "React",
       comments: [],
       resolved: false,
-      assigned: false
+      assigned: false,
+      createdBY: {
+        id: 1337
+      }
     }
   ],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"]
