@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import TicketItem from "./TicketItem";
-import { getData, testDeleteTicket } from "../actions";
+import { getData, testDeleteTicket } from "../../actions";
 
 class TicketList extends React.Component {
   componentDidMount() {

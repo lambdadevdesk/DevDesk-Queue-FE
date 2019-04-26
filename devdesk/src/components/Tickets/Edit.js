@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { SForm, TicketH1 } from "../helpers/index";
-import { testAddTicket } from "../actions/index";
+import { updateTestTicket } from "../../actions";
 
-class TicketForm extends Component {
+import { SForm } from "../../helpers";
+
+class Edit extends Component {
   state = {
     ticket: {
       id: "",
@@ -25,55 +26,50 @@ class TicketForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.testAddTicket(this.state.ticket);
-    this.setState({
-      ticket: {
-        title: "",
-        description: ""
-      }
-    });
+    this.props.updateTestTicket(this.state.ticket);
+    this.props.history.push("/student_view");
   };
-
   render() {
-    console.log(this.props.tickets);
     return (
-      <>
-        <TicketH1>Submit A Ticket</TicketH1>
+      <div>
         <SForm onSubmit={this.handleSubmit} action="">
           <div className="field">
-            <label htmlFor="title">Title:</label>
+            <label htmlFor="title">Title: </label>
             <input
+              name="title"
               onChange={this.handleChange}
               type="text"
-              name="title"
-              placeholder="Title"
               value={this.state.ticket.title}
             />
           </div>
           <div className="field">
-            <label htmlFor="category"> Category:</label>
-            <select onChange={this.handleChange} name="category" id="category">
-              {this.props.categories.map((category, i) => (
-                <option key={i} value={category}>
-                  {category}
-                </option>
+            <label htmlFor="category">Category: </label>
+            <select onChange={this.handleChange} name="category" id="">
+              {this.props.categories.map(category => (
+                <option value={this}>{category}</option>
               ))}
             </select>
           </div>
           <div className="field">
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description">Description: </label>
             <textarea
               onChange={this.handleChange}
-              type="textarea"
               name="description"
               value={this.state.ticket.description}
             />
           </div>
-
-          <button type="submit">Submit</button>
+          <button type="submit">Update</button>
         </SForm>
-      </>
+      </div>
     );
+  }
+  componentDidMount() {
+    const ticket = this.props.tickets.find(
+      ticket => `${ticket.id}` === this.props.match.params.id
+    );
+    this.setState({
+      ticket: { ...ticket }
+    });
   }
 }
 
@@ -86,5 +82,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { testAddTicket }
-)(TicketForm);
+  { updateTestTicket }
+)(Edit);

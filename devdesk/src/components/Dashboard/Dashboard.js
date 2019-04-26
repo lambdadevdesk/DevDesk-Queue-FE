@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import TicketForm from "./TicketForm";
-import TicketList from "./TicketList";
+import TicketForm from "../Tickets/TicketForm";
+import TicketList from "../Tickets/TicketList";
 import DashboardMenu from "./DashboardMenu";
-import { DashDiv } from "../helpers";
+import { DashDiv } from "../../helpers";
 
 const Dashboard = props => {
   return (
