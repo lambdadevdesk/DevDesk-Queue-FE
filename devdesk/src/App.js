@@ -6,10 +6,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import TicketCard from "./components/Tickets/TicketCard";
 import HomePage from "./components/HomePage";
-
-// Testing
-import AdminView from "./views/AdminView";
-import StudentView from "./views/StudentView";
+import TicketViews from "./views/TicketViews";
 import TicketForm from "./components/Tickets/TicketForm";
 
 function App() {
@@ -19,13 +16,12 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={Login} />
         <Route
-          path="/ticket/:id"
+          path="/tickets/:id"
           exact
           render={props => <TicketCard {...props} />}
         />
         <Route path="/new-ticket" component={TicketForm} />
-        <PrivateRoute exact path="/student_view" component={StudentView} />
-        <PrivateRoute exact path="/admin_view" component={AdminView} />
+        <PrivateRoute exact path="/tickets" component={TicketViews} />
       </Layout>
     </Router>
   );

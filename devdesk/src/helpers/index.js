@@ -72,14 +72,14 @@ export const LoginForm = styled.form`
   input {
     font-size: 1rem;
     margin-bottom: 1rem;
-    border: 1px solid lightgray;
+    border: 1px solid gray;
     border-radius: 3px;
     height: 30px;
     padding-left: 12px;
     outline: none;
 
     &::placeholder {
-      color: lightgray;
+      color: gray;
     }
   }
 
@@ -140,14 +140,14 @@ export const SForm = styled.form`
   select {
     font-size: 1rem;
     margin-bottom: 1rem;
-    border: 1px solid lightgray;
+    border: 1px solid gray;
     border-radius: 3px;
     height: 30px;
     padding-left: 12px;
     outline: none;
 
     &::placeholder {
-      color: lightgray;
+      color: gray;
     }
   }
   textarea {
@@ -223,5 +223,30 @@ export const DashNav = styled.nav`
   a {
     text-decoration: none;
     color: #bb1333;
+  }
+`;
+
+// Styles for TicketItem
+export const ItemDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  width: 100%;
+
+  .ticket-item {
+    padding: 1.2rem;
+    margin: 1rem 1rem 0 1rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px 4px 2px 2px;
+    border-bottom: 2px solid #1e50ee;
+    box-shadow: 0 1px 3px 0 #d4d4d5;
+
+    p {
+      word-wrap: break-word;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: #000;
   }
 `;
