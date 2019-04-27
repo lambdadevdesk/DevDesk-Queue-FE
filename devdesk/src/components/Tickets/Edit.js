@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import { updateTestTicket } from "../../actions";
 
-import { SForm } from "../../helpers";
+import { SForm, TicketH1 } from "../../helpers";
+import Dashboard from "../Dashboard/Dashboard";
 
 class Edit extends Component {
   state = {
@@ -31,7 +32,8 @@ class Edit extends Component {
   };
   render() {
     return (
-      <div>
+      <Dashboard>
+        <TicketH1>Edit Ticket Number {this.state.ticket.id}</TicketH1>
         <SForm onSubmit={this.handleSubmit} action="">
           <div className="field">
             <label htmlFor="title">Title: </label>
@@ -60,7 +62,7 @@ class Edit extends Component {
           </div>
           <button type="submit">Update</button>
         </SForm>
-      </div>
+      </Dashboard>
     );
   }
   componentDidMount() {

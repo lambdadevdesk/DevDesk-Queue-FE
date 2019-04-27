@@ -17,7 +17,8 @@ import {
   DELETE_TEST_TICKET_SUCCESS,
   UPDATE_TEST_TICKET,
   TOGGLE_ADMIN,
-  RESOLVE_TICKET
+  RESOLVE_TICKET,
+  ASSIGN_TICKET
 } from "../actions";
 
 const initialState = {
@@ -30,25 +31,21 @@ const initialState = {
   deletingTicket: false,
   status: null,
   error: null,
-  students: [
-    {
-      id: 1337,
-      name: "Mace Windu",
-      email: "Mace.Windu@2ez.gg",
-      cohort: "FSWPT - 4",
-      isAdmin: false,
-      openedTickets: []
-    }
-  ],
-  admins: [
-    {
-      id: 1007,
-      name: "Admin",
-      email: "Admin@example.com",
-      isAdmin: true,
-      myTickets: []
-    }
-  ],
+  student: {
+    id: 1337,
+    name: "Mace Windu",
+    email: "Mace.Windu@2ez.gg",
+    cohort: "FSWPT - 4",
+    isAdmin: false,
+    openedTickets: []
+  },
+  admin: {
+    id: 1007,
+    name: "Admin",
+    email: "Admin@example.com",
+    isAdmin: true,
+    myTickets: []
+  },
   tickets: [
     {
       id: 0,
@@ -198,6 +195,17 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         tickets: alteredList
+      };
+    case ASSIGN_TICKET:
+      const alteredListl = state.tickets.map(ticket => {
+        if (Number(ticket.id) === Number(action.id)) {
+          ticket.assigned = !ticket.assigned;
+        }
+        return ticket;
+      });
+      return {
+        ...state,
+        tickets: alteredListl
       };
     default:
       return state;

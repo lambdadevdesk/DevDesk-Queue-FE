@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -35,7 +36,9 @@ const TicketCard = props => {
                 {ticket.resolved ? "Reopen" : "Resolve"}
               </button>
             ) : (
-              <button>Edit</button>
+              <Link to={`/edit/${ticket.id}`}>
+                <button>✎</button>
+              </Link>
             )}
           </div>
           <h2>{ticket.title}</h2>
