@@ -27,7 +27,6 @@ class TicketForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.testAddTicket(this.state.ticket);
-    // This will have to change later when authentication works properly
     this.props.history.push(`/tickets`);
     this.setState({
       ticket: {
