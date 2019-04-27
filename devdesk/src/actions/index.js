@@ -140,3 +140,9 @@ export const resolveTicket = id => dispatch => {
   console.log(id);
   dispatch({ type: RESOLVE_TICKET, id });
 };
+
+//Test to assign tickets to yourself if you are an Admin
+export const ASSIGN_TICKET = "ASSIGN_TICKET";
+export const assignTicket = id => dispatch => {
+  dispatch({ type: ASSIGN_TICKET, id });
+};
