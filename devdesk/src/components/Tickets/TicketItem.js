@@ -8,7 +8,7 @@ const TicketItem = props => {
   };
   return (
     <div className="ticket-item">
-      <Link to={`/ticket/${props.id}`}>
+      <Link to={`/tickets/${props.id}`}>
         <h1>{props.title}</h1>
         <p>{props.category}</p>
         <p>{props.description}</p>

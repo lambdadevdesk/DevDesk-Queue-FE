@@ -1,17 +1,27 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+
+import { toggleAdmin } from "../../actions";
 import { MenuH1, MenuNav } from "../../helpers/index";
 
-const Menu = () => {
+const Menu = props => {
+  const toggleAdmin = () => {
+    props.toggleAdmin();
+  };
   return (
     <MenuNav>
       <div>
         <MenuH1>DevDesk Queue</MenuH1>
       </div>
       <div>
-        <NavLink to="/admin_view">Admin View</NavLink>
-        <NavLink to="/student_view">Student View</NavLink>
+        <input
+          onChange={toggleAdmin}
+          type="checkbox"
+          name="isAdmin"
+          id="isAdmin"
+        />
+        <NavLink to="/tickets">Tickets</NavLink>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/Login">Login</NavLink>
       </div>
@@ -19,4 +29,11 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { toggleAdmin }
+)(Menu);

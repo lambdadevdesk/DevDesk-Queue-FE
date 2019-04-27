@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { bindActionCreators } from "redux";
 
 export const FETCH_DATA_START = "FETCH_DATA_START";
 export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
@@ -125,4 +124,11 @@ export const updateTestTicket = (ticket, id) => dispatch => {
     ticket,
     id
   });
+};
+
+//Test to toggle Admin/Student View
+export const TOGGLE_ADMIN = "TOGGLE_ADMIN";
+
+export const toggleAdmin = () => dispatch => {
+  dispatch({ type: TOGGLE_ADMIN });
 };

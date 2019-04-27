@@ -15,7 +15,8 @@ import {
   CREATE_TEST_TICKET,
   VIEW_TEST_TICKETS,
   DELETE_TEST_TICKET_SUCCESS,
-  UPDATE_TEST_TICKET
+  UPDATE_TEST_TICKET,
+  TOGGLE_ADMIN
 } from "../actions";
 
 const initialState = {
@@ -75,7 +76,8 @@ const initialState = {
       }
     }
   ],
-  categories: ["None", "React", "JavaScript", "HTML", "CSS"]
+  categories: ["None", "React", "JavaScript", "HTML", "CSS"],
+  isAdmin: false
 };
 
 const reducers = (state = initialState, action) => {
@@ -179,6 +181,11 @@ const reducers = (state = initialState, action) => {
     case UPDATE_TEST_TICKET:
       return {
         ...state
+      };
+    case TOGGLE_ADMIN:
+      return {
+        ...state,
+        isAdmin: !state.isAdmin
       };
     default:
       return state;

@@ -1,9 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { DashNav } from "../../helpers";
-import { createTicket, viewTickets } from "../../actions";
 import ProfileCard from "../ProfileCard";
 
 const DashboardMenu = props => {
@@ -15,21 +13,18 @@ const DashboardMenu = props => {
           <Link to="/new-ticket">Create Ticket</Link>
         </li>
         <li>
-          <Link to="/my-tickets">My Tickets</Link>
+          {props.userRole ? (
+            <Link to="/my-tickets">Claimed Tickets</Link>
+          ) : (
+            <Link to="/my-tickets">My Tickets</Link>
+          )}
         </li>
         <li>
           <Link to="/tickets">Opened Tickets</Link>
         </li>
-        <li>Claimed Tickets</li>
       </ul>
     </DashNav>
   );
 };
 
-const mapStateToProps = state => {
-  return state;
-};
-export default connect(
-  mapStateToProps,
-  { createTicket, viewTickets }
-)(DashboardMenu);
+export default DashboardMenu;
