@@ -9,6 +9,7 @@ import TicketViews from "./views/TicketViews";
 import TicketForm from "./components/Tickets/TicketForm";
 import TicketCard from "./components/Tickets/TicketCard";
 import HomePage from "./components/HomePage";
+import Edit from './components/Tickets/Edit';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           render={props => <TicketCard {...props} />}
         />
         <Route path="/new-ticket" component={TicketForm} />
+        <Route path="/edit" component={Edit} />
         <PrivateRoute exact path="/tickets" component={TicketViews} />
       </Layout>
     </Router>
