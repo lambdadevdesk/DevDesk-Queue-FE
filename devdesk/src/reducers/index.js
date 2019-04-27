@@ -186,30 +186,40 @@ const reducers = (state = initialState, action) => {
         isAdmin: !state.isAdmin
       };
     case RESOLVE_TICKET:
-      const alteredList = state.tickets.map(ticket => {
-        if (Number(ticket.id) === Number(action.id)) {
-          ticket.resolved = !ticket.resolved;
-        }
-        return ticket;
-      });
       return {
         ...state,
-        tickets: alteredList
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket.resolved = !ticket.resolved;
+          }
+          return ticket;
+        })
       };
     case ASSIGN_TICKET:
-      const alteredListl = state.tickets.map(ticket => {
-        if (Number(ticket.id) === Number(action.id)) {
-          ticket.assigned = !ticket.assigned;
-        }
-        return ticket;
-      });
       return {
         ...state,
-        tickets: alteredListl
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket.assigned = !ticket.assigned;
+          }
+          return ticket;
+        })
       };
+
     default:
       return state;
   }
 };
 
 export default reducers;
+
+// const alteredList = state.tickets.map(ticket => {
+//   if (Number(ticket.id) === Number(action.id)) {
+//     ticket.resolved = !ticket.resolved;
+//   }
+//   return ticket;
+// });
+// return {
+//   ...state,
+//   tickets: alteredList
+// };
