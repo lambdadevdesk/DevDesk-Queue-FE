@@ -132,3 +132,11 @@ export const TOGGLE_ADMIN = "TOGGLE_ADMIN";
 export const toggleAdmin = () => dispatch => {
   dispatch({ type: TOGGLE_ADMIN });
 };
+
+// Test to resolve tickets if you are an Admin
+
+export const RESOLVE_TICKET = "RESOLVE_TICKET";
+export const resolveTicket = id => dispatch => {
+  console.log(id);
+  dispatch({ type: RESOLVE_TICKET, id });
+};

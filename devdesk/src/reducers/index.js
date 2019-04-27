@@ -16,7 +16,8 @@ import {
   VIEW_TEST_TICKETS,
   DELETE_TEST_TICKET_SUCCESS,
   UPDATE_TEST_TICKET,
-  TOGGLE_ADMIN
+  TOGGLE_ADMIN,
+  RESOLVE_TICKET
 } from "../actions";
 
 const initialState = {
@@ -186,6 +187,17 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         isAdmin: !state.isAdmin
+      };
+    case RESOLVE_TICKET:
+      const alteredList = state.tickets.map(ticket => {
+        if (Number(ticket.id) === Number(action.id)) {
+          ticket.resolved = !ticket.resolved;
+        }
+        return ticket;
+      });
+      return {
+        ...state,
+        tickets: alteredList
       };
     default:
       return state;
