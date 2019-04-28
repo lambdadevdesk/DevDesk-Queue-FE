@@ -73,15 +73,34 @@ export const deleteTicket = id => dispatch => {
     });
 };
 
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
-export const login = () => dispatch => {
-  return {
-    type: LOGIN_SUCCESS,
-    payload: {
-      token: ""
-    }
-  };
+//
+// Login
+//
+
+export const LOGIN_START = "LOGIN_START";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const login = credentials => dispatch => {
+  dispatch({ type: LOGIN_START });
+  localStorage.removeItem("token");
+  return axios
+    .post('', credentials)
+    .this(res => {
+      localStorage.setItem("token", res.data.payload);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+        credentials: credentials
+      });
+    })
+    .catch(err => {
+      if (err.response.status === 403) {
+        localStorage.removeItem("token");
+      }
+      dispatch({ type: LOGIN_FAIL, payload: err.response });
+    });
 };
 
 //
@@ -127,6 +146,7 @@ export const updateTestTicket = (ticket, id) => dispatch => {
 };
 
 //Test to toggle Admin/Student View
+
 export const TOGGLE_ADMIN = "TOGGLE_ADMIN";
 
 export const toggleAdmin = () => dispatch => {

@@ -11,6 +11,13 @@ import {
   DELETE_TICKET_START,
   DELETE_TICKET_SUCCESS,
   DELETE_TICKET_FAIL,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+
+  //
+  // Tests
+  //
   ADD_TEST_TICKET,
   CREATE_TEST_TICKET,
   VIEW_TEST_TICKETS,
@@ -31,6 +38,28 @@ const initialState = {
   deletingTicket: false,
   status: null,
   error: null,
+
+  credentials: [],
+  students: [
+    {
+      id: 1337,
+      name: "Mace Windu",
+      email: "Mace.Windu@2ez.gg",
+      cohort: "FSWPT - 4",
+      isAdmin: false,
+      openedTickets: []
+    }
+  ],
+  admins: [
+    {
+      id: 1007,
+      name: "Admin",
+      email: "Admin@example.com",
+      isAdmin: true,
+      myTickets: []
+    }
+  ],
+=======
   student: {
     id: 1337,
     name: "Mace Windu",
@@ -46,6 +75,7 @@ const initialState = {
     isAdmin: true,
     myTickets: []
   },
+
   tickets: [
     {
       id: 0,
@@ -152,6 +182,25 @@ const reducers = (state = initialState, action) => {
         updatingTicket: false,
         error: action.payload
       };
+    case LOGIN_START: {
+      return {
+        ...state,
+        isLoggingIn: true
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        isLoggingIn: false,
+        credentials: action.credentials
+      };
+    }
+    case LOGIN_FAIL: {
+      return {
+        ...state,
+        isLoggingIn: false
+      };
+    }
     // Test Reducers to testing form functionality
     case ADD_TEST_TICKET:
       return {
