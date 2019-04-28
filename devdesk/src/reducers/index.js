@@ -15,11 +15,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
 
-
   //
-  // Tests  
+  // Tests
   //
-
   ADD_TEST_TICKET,
   CREATE_TEST_TICKET,
   VIEW_TEST_TICKETS,
@@ -38,6 +36,7 @@ const initialState = {
   deletingTicket: false,
   status: null,
   error: null,
+  credentials: [],
   students: [
     {
       id: 1337,
@@ -163,6 +162,25 @@ const reducers = (state = initialState, action) => {
         updatingTicket: false,
         error: action.payload
       };
+    case LOGIN_START: {
+      return {
+        ...state,
+        isLoggingIn: true
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        isLoggingIn: false,
+        credentials: action.credentials
+      };
+    }
+    case LOGIN_FAIL: {
+      return {
+        ...state,
+        isLoggingIn: false
+      };
+    }
     // Test Reducers to testing form functionality
     case ADD_TEST_TICKET:
       return {
