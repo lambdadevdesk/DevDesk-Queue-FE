@@ -227,7 +227,13 @@ const reducers = (state = initialState, action) => {
       };
     case UPDATE_TEST_TICKET:
       return {
-        ...state
+        ...state,
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket = action.ticket;
+          }
+          return ticket;
+        })
       };
     case TOGGLE_ADMIN:
       return {
@@ -261,14 +267,3 @@ const reducers = (state = initialState, action) => {
 };
 
 export default reducers;
-
-// const alteredList = state.tickets.map(ticket => {
-//   if (Number(ticket.id) === Number(action.id)) {
-//     ticket.resolved = !ticket.resolved;
-//   }
-//   return ticket;
-// });
-// return {
-//   ...state,
-//   tickets: alteredList
-// };

@@ -27,8 +27,8 @@ class Edit extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.updateTestTicket(this.state.ticket);
-    this.props.history.push("/student_view");
+    this.props.updateTestTicket(this.state.ticket, this.state.ticket.id);
+    this.props.history.push("/tickets");
   };
   render() {
     return (
@@ -48,7 +48,9 @@ class Edit extends Component {
             <label htmlFor="category">Category: </label>
             <select onChange={this.handleChange} name="category" id="">
               {this.props.categories.map(category => (
-                <option value={this}>{category}</option>
+                <option key={category} value={this.state.category}>
+                  {category}
+                </option>
               ))}
             </select>
           </div>
