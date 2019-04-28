@@ -73,7 +73,19 @@ export const deleteTicket = id => dispatch => {
     });
 };
 
+export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const login = (credentials) => dispatch => {
+  dispatch({ type: LOGIN_START});
+  localStorage.removeItem("token");
+  return axios 
+  .post(/*!! API CALL !!*/ credentials)
+  .this(res => {
+    localStorage.setItem('token', res.data.payload)
+  })
+};
 
 //
 //Test actions and action creators to test form functionality
