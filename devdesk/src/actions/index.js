@@ -119,6 +119,7 @@ export const testDeleteTicket = id => {
 export const UPDATE_TEST_TICKET = "UPDATE_TEST_TICKET";
 
 export const updateTestTicket = (ticket, id) => dispatch => {
+  console.log(ticket, id);
   dispatch({
     type: UPDATE_TEST_TICKET,
     ticket,
@@ -137,7 +138,6 @@ export const toggleAdmin = () => dispatch => {
 
 export const RESOLVE_TICKET = "RESOLVE_TICKET";
 export const resolveTicket = id => dispatch => {
-  console.log(id);
   dispatch({ type: RESOLVE_TICKET, id });
 };
 
