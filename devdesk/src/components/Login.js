@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 import { LoginForm, LoginHeader } from "../helpers";
-import { connect } from "net";
+import { connect } from "react-redux";
+import { login } from "../actions";
 
 class Login extends Component {
   state = { credentials: { username: "", password: "" } };
@@ -15,7 +16,7 @@ class Login extends Component {
     });
   };
 
-  handleLogin = e => {
+  login = e => {
     e.preventDefault();
     this.props.handleLogin(this.state.credentials).then(() => {
       this.props.history.push("/");
@@ -39,7 +40,7 @@ class Login extends Component {
           />
           <h1>Lambda School</h1>
         </LoginHeader>
-        <LoginForm onSubmit={this.handleLogin} action="" autoComplete="off">
+        <LoginForm onSubmit={this.login} action="" autoComplete="off">
           <input
             onChange={this.handleChange}
             type="text"
@@ -75,5 +76,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { handleLogin }
+  { login }
 )(Login);
