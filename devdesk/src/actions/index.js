@@ -86,7 +86,7 @@ export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   localStorage.removeItem("token");
   return axios
-    .post(/*!! API CALL !!*/ credentials)
+    .post('', credentials)
     .this(res => {
       localStorage.setItem("token", res.data.payload);
       dispatch({
