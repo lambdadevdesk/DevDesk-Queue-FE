@@ -75,15 +75,6 @@ export const deleteTicket = id => dispatch => {
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 
-export const login = () => dispatch => {
-  return {
-    type: LOGIN_SUCCESS,
-    payload: {
-      token: ""
-    }
-  };
-};
-
 //
 //Test actions and action creators to test form functionality
 //

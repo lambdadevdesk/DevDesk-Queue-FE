@@ -3,16 +3,29 @@ import React, { Component } from "react";
 import { LoginForm, LoginHeader } from "../helpers";
 
 class Login extends Component {
-  state = { username: "", password: "" };
+  state = { credentials: { username: "", password: "" } };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: [e.target.value]
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: [e.target.value]
+      }
     });
   };
 
-  handleSubmit = e => {
+  handleLogin = e => {
     e.preventDefault();
+    this.props.handleLogin(this.state.credentials).then(() => {
+      this.props.history.push("/");
+    });
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        username: "",
+        password: ""
+      }
+    });
   };
 
   render() {
@@ -25,20 +38,22 @@ class Login extends Component {
           />
           <h1>Lambda School</h1>
         </LoginHeader>
-        <LoginForm onSubmit={this.handleSubmit} action="" autoComplete="off">
+        <LoginForm onSubmit={this.handleLogin} action="" autoComplete="off">
           <input
             onChange={this.handleChange}
             type="text"
             name="username"
             placeholder="Username"
-            value={this.state.username}
+            value={this.state.credentials.username}
+            required
           />
           <input
             onChange={this.handleChange}
             type="password"
             name="password"
             placeholder="Password"
-            value={this.state.password}
+            value={this.state.credentials.password}
+            required
           />
           <button type="submit">Login</button>
           <div className="extra">
