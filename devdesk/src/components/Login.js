@@ -66,15 +66,14 @@ class Login extends Component {
       </div>
     );
   }
-}handleSubmit
+}
 
-chandleSubmit
- handleSubmit
- handleSubmit
- handleSubmit
-}handleSubmit
-
-ehandleSubmit
- handleSubmit
- handleSubmit
-)handleSubmit
+const mapStateToProps = state => {
+  return {
+    isLoggingIn: state.isLoggingIn
+  };
+};
+export default connect(
+  mapStateToProps,
+  { handleLogin }
+)(Login);
