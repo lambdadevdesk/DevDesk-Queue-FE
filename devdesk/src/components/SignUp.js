@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 
 import { LoginForm, LoginHeader } from "../helpers";
-import { connect } from "react-redux";
-import { login } from "../actions";
 
-class Login extends Component {
-  state = { credentials: { username: "", password: "" } };
+class SignUp extends Component {
+  state = { credentials: { name: "", email: "", username: "", password: "" } };
 
   handleChange = e => {
     this.setState({
@@ -16,20 +14,17 @@ class Login extends Component {
     });
   };
 
-  login = e => {
-    e.preventDefault();
-    this.props.login(this.state.credentials).then(() => {
-      this.props.history.push("/");
-    });
+  signup = e => {
     this.setState({
       credentials: {
         ...this.state.credentials,
+        name: "",
+        email: "",
         username: "",
         password: ""
       }
     });
   };
-
   render() {
     return (
       <div>
@@ -40,7 +35,7 @@ class Login extends Component {
           />
           <h1>Lambda School</h1>
         </LoginHeader>
-        <LoginForm onSubmit={this.login} action="" autoComplete="off">
+        <LoginForm onSubmit={this.signup} actions="" autoComplete="off">
           <input
             onChange={this.handleChange}
             type="text"
@@ -69,12 +64,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLoggingIn: state.isLoggingIn
-  };
-};
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default SignUp;

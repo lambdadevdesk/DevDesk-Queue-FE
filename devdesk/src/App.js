@@ -5,7 +5,7 @@ import Layout from "./components/layout";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import TicketViews from "./views/TicketViews";
-
+import SignUp from "./components/SignUp";
 import TicketForm from "./components/Tickets/TicketForm";
 import TicketCard from "./components/Tickets/TicketCard";
 import HomePage from "./components/HomePage";
@@ -25,6 +25,7 @@ function App() {
         <Route path="/new-ticket" component={TicketForm} />
         <Route path="/edit/:id" component={Edit} />
         <PrivateRoute exact path="/tickets" component={TicketViews} />
+        <Route exact path="/sign_up" component={SignUp}/>
       </Layout>
     </Router>
   );
