@@ -145,8 +145,12 @@ const reducers = (state = initialState, action) => {
     case EDIT_TICKET_SUCCESS:
       return {
         ...state,
-        updatingTicket: false,
-        tickets: [...state.tickets, action.payload]
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket = action.payload;
+          }
+          return ticket;
+        })
       };
     case EDIT_TICKET_FAIL:
       return {
