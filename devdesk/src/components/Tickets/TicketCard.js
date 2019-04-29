@@ -19,7 +19,6 @@ const TicketCard = props => {
     background: lemonchiffon;
     display: flex;
   `;
-  console.log(ticket);
   return (
     <Dashboard>
       <CardDiv>
@@ -27,7 +26,6 @@ const TicketCard = props => {
           <h2>Number: #{ticket.id}</h2>
           <h2>Category: {ticket.category}</h2>
           <h2>Status: {ticket.resolved ? "Closed" : "Open"}</h2>
-          <h2>Created by: {ticket.createdBY.id}</h2>
         </div>
         <div className="ticket-content">
           <div>

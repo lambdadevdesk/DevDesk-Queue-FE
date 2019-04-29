@@ -7,7 +7,7 @@ export const FETCH_DATA_FAIL = "FETCH_DATA_FAIL";
 export const getData = () => dispatch => {
   dispatch({ type: FETCH_DATA_START });
   axios
-    .get(``)
+    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets`)
     .then(res => {
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
@@ -23,8 +23,9 @@ export const ADD_TICKET_FAIL = "ADD_TICKET_FAIL";
 export const addTicket = newTicket => dispatch => {
   dispatch({ type: ADD_TICKET_START });
   axios
-    .post("")
+    .post("https://devdeskqueue-be.herokuapp.com/api/tickets", newTicket)
     .then(res => {
+      console.log(res);
       dispatch({
         type: ADD_TICKET_SUCCESS,
         payload: res.data
@@ -42,8 +43,12 @@ export const EDIT_TICKET_FAIL = "EDIT_TICKET_FAIL";
 export const editTicket = (id, updatedTicket) => dispatch => {
   dispatch({ type: EDIT_TICKET_START });
   axios
-    .put("")
+    .put(
+      `https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`,
+      updatedTicket
+    )
     .then(res => {
+      console.log(res.data);
       dispatch({
         type: EDIT_TICKET_SUCCESS,
         payload: res.data
@@ -61,8 +66,9 @@ export const DELETE_TICKET_FAIL = "DELETE_TICKET_FAIL";
 export const deleteTicket = id => dispatch => {
   dispatch({ type: DELETE_TICKET_START });
   axios
-    .delete("")
+    .delete(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`)
     .then(res => {
+      console.log(res.data);
       dispatch({
         type: DELETE_TICKET_SUCCESS,
         payload: res.data
@@ -72,7 +78,6 @@ export const deleteTicket = id => dispatch => {
       dispatch({ type: DELETE_TICKET_FAIL, payload: err.response });
     });
 };
-
 
 //
 // Login
@@ -86,7 +91,7 @@ export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   localStorage.removeItem("token");
   return axios
-    .post('', credentials)
+    .post("", credentials)
     .this(res => {
       localStorage.setItem("token", res.data.payload);
       dispatch({
@@ -138,7 +143,6 @@ export const testDeleteTicket = id => {
 export const UPDATE_TEST_TICKET = "UPDATE_TEST_TICKET";
 
 export const updateTestTicket = (ticket, id) => dispatch => {
-  console.log(ticket, id);
   dispatch({
     type: UPDATE_TEST_TICKET,
     ticket,
