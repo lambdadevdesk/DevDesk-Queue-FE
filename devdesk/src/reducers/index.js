@@ -59,7 +59,6 @@ const initialState = {
       myTickets: []
     }
   ],
-=======
   student: {
     id: 1337,
     name: "Mace Windu",
