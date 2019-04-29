@@ -3,18 +3,28 @@ import React, { Component } from "react";
 import { LoginForm, LoginHeader } from "../helpers";
 
 class SignUp extends Component {
-    state = { credentials: { name: '', email: '', username: '', password: '' } }
+  state = { credentials: { name: "", email: "", username: "", password: "" } };
 
-    handleChange = e => {
-        this.setState({
-            credentials: {
-                ...this.state.credentials,
-                [e.target.name]: [e.target.value]
-            }
-        })
-    }
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: [e.target.value]
+      }
+    });
+  };
 
-    signup = e
+  signup = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        name: "",
+        email: "",
+        username: "",
+        password: ""
+      }
+    });
+  };
   render() {
     return (
       <div>
@@ -26,7 +36,7 @@ class SignUp extends Component {
           <h1>Lambda School</h1>
         </LoginHeader>
         <LoginForm onSubmit={this.signup} actions="" autoComplete="off">
-        <input
+          <input
             onChange={this.handleChange}
             type="text"
             name="username"
