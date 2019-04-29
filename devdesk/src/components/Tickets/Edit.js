@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { updateTestTicket } from "../../actions";
+import { editTicket } from "../../actions";
 
-import { SForm } from "../../helpers";
+import { SForm, TicketH1 } from "../../helpers";
+import Dashboard from "../Dashboard/Dashboard";
 
 class Edit extends Component {
   state = {
@@ -12,7 +13,6 @@ class Edit extends Component {
       title: "",
       description: "",
       category: "",
-      comments: [],
       resolved: false,
       assigned: false
     }
@@ -26,12 +26,13 @@ class Edit extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.updateTestTicket(this.state.ticket);
-    this.props.history.push("/student_view");
+    this.props.editTicket(this.state.ticket.id, this.state.ticket);
+    this.props.history.push("/tickets");
   };
   render() {
     return (
-      <div>
+      <Dashboard>
+        <TicketH1>Edit Ticket Number {this.state.ticket.id}</TicketH1>
         <SForm onSubmit={this.handleSubmit} action="">
           <div className="field">
             <label htmlFor="title">Title: </label>
@@ -46,7 +47,9 @@ class Edit extends Component {
             <label htmlFor="category">Category: </label>
             <select onChange={this.handleChange} name="category" id="">
               {this.props.categories.map(category => (
-                <option value={this}>{category}</option>
+                <option key={category} value={this.state.category}>
+                  {category}
+                </option>
               ))}
             </select>
           </div>
@@ -60,7 +63,7 @@ class Edit extends Component {
           </div>
           <button type="submit">Update</button>
         </SForm>
-      </div>
+      </Dashboard>
     );
   }
   componentDidMount() {
@@ -82,5 +85,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateTestTicket }
+  { editTicket }
 )(Edit);

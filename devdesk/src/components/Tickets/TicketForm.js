@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { SForm, TicketH1 } from "../../helpers";
-import { testAddTicket } from "../../actions";
+import { addTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketForm extends Component {
   state = {
     ticket: {
-      id: "",
       title: "",
       description: "",
       category: "",
-      comments: [],
       resolved: false,
       assigned: false
     }
@@ -26,8 +24,7 @@ class TicketForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.testAddTicket(this.state.ticket);
-    // This will have to change later when authentication works properly
+    this.props.addTicket(this.state.ticket);
     this.props.history.push(`/tickets`);
     this.setState({
       ticket: {
@@ -38,7 +35,6 @@ class TicketForm extends Component {
   };
 
   render() {
-    console.log(this.props.tickets);
     return (
       <Dashboard>
         <TicketH1>Submit A Ticket</TicketH1>
@@ -89,5 +85,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { testAddTicket }
+  { addTicket }
 )(TicketForm);

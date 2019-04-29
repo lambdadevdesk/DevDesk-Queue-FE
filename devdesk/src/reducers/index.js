@@ -11,12 +11,21 @@ import {
   DELETE_TICKET_START,
   DELETE_TICKET_SUCCESS,
   DELETE_TICKET_FAIL,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+
+  //
+  // Tests
+  //
   ADD_TEST_TICKET,
   CREATE_TEST_TICKET,
   VIEW_TEST_TICKETS,
   DELETE_TEST_TICKET_SUCCESS,
   UPDATE_TEST_TICKET,
-  TOGGLE_ADMIN
+  TOGGLE_ADMIN,
+  RESOLVE_TICKET,
+  ASSIGN_TICKET
 } from "../actions";
 
 const initialState = {
@@ -29,6 +38,8 @@ const initialState = {
   deletingTicket: false,
   status: null,
   error: null,
+
+  credentials: [],
   students: [
     {
       id: 1337,
@@ -48,34 +59,23 @@ const initialState = {
       myTickets: []
     }
   ],
-  tickets: [
-    {
-      id: 0,
-      title: "Reduce method not working",
-      description:
-        "words.reduce( word => word....) Doesn't work. Please explain reduce to me",
-      category: "JavaScript",
-      comments: [],
-      resolved: false,
-      assigned: false,
-      createdBY: {
-        id: 1337
-      }
-    },
-    {
-      id: 1,
-      title: "I can't deploy to Netlify",
-      description:
-        "Netlify Keeps giving me an error message when I go to deploy my react Application. Please Help",
-      category: "React",
-      comments: [],
-      resolved: false,
-      assigned: false,
-      createdBY: {
-        id: 1337
-      }
-    }
-  ],
+  student: {
+    id: 1337,
+    name: "Mace Windu",
+    email: "Mace.Windu@2ez.gg",
+    cohort: "FSWPT - 4",
+    isAdmin: false,
+    openedTickets: []
+  },
+  admin: {
+    id: 1007,
+    name: "Admin",
+    email: "Admin@example.com",
+    isAdmin: true,
+    myTickets: []
+  },
+
+  tickets: [],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   isAdmin: false
 };
@@ -110,7 +110,7 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         creatingTicket: false,
-        tickets: action.payload
+        tickets: [...state.tickets, action.payload]
       };
     case ADD_TICKET_FAIL:
       return {
@@ -146,7 +146,7 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         updatingTicket: false,
-        tickets: action.payload
+        tickets: [...state.tickets, action.payload]
       };
     case EDIT_TICKET_FAIL:
       return {
@@ -154,6 +154,25 @@ const reducers = (state = initialState, action) => {
         updatingTicket: false,
         error: action.payload
       };
+    case LOGIN_START: {
+      return {
+        ...state,
+        isLoggingIn: true
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        isLoggingIn: false,
+        credentials: action.credentials
+      };
+    }
+    case LOGIN_FAIL: {
+      return {
+        ...state,
+        isLoggingIn: false
+      };
+    }
     // Test Reducers to testing form functionality
     case ADD_TEST_TICKET:
       return {
@@ -180,13 +199,40 @@ const reducers = (state = initialState, action) => {
       };
     case UPDATE_TEST_TICKET:
       return {
-        ...state
+        ...state,
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket = action.ticket;
+          }
+          return ticket;
+        })
       };
     case TOGGLE_ADMIN:
       return {
         ...state,
         isAdmin: !state.isAdmin
       };
+    case RESOLVE_TICKET:
+      return {
+        ...state,
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket.resolved = !ticket.resolved;
+          }
+          return ticket;
+        })
+      };
+    case ASSIGN_TICKET:
+      return {
+        ...state,
+        tickets: state.tickets.map(ticket => {
+          if (Number(ticket.id) === Number(action.id)) {
+            ticket.assigned = !ticket.assigned;
+          }
+          return ticket;
+        })
+      };
+
     default:
       return state;
   }
