@@ -39,6 +39,22 @@ class SignUp extends Component {
           <input
             onChange={this.handleChange}
             type="text"
+            name="name"
+            placeholder="Name"
+            value={this.state.credentials.name}
+            required
+          />
+          <input
+            onChange={this.handleChange}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={this.state.credentials.email}
+            required
+          />
+          <input
+            onChange={this.handleChange}
+            type="text"
             name="username"
             placeholder="Username"
             value={this.state.credentials.username}
@@ -46,16 +62,16 @@ class SignUp extends Component {
           />
           <input
             onChange={this.handleChange}
-            type="password"
+            type="text"
             name="password"
             placeholder="Password"
             value={this.state.credentials.password}
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit">Sign Up!</button>
           <div className="extra">
             <p>
-              Don't have an Account? <a href="/sign_up">Sign up</a>
+              Already have an Account? <a href="/login">Log in!</a>
             </p>
           </div>
         </LoginForm>
