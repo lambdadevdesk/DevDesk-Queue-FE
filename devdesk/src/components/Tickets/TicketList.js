@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { ItemDiv } from "../../helpers";
 
 import TicketItem from "./TicketItem";
-import { getData, testDeleteTicket, assignTicket } from "../../actions";
+import { getData, deleteTicket, assignTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketList extends React.Component {
@@ -13,7 +13,7 @@ class TicketList extends React.Component {
   }
 
   deleteTicket = id => {
-    this.props.testDeleteTicket(id);
+    this.props.deleteTicket(id);
   };
 
   assignTicket = id => {
@@ -54,5 +54,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData, testDeleteTicket, assignTicket }
+  { getData, deleteTicket, assignTicket }
 )(TicketList);

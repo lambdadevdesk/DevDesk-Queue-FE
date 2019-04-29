@@ -75,34 +75,7 @@ const initialState = {
     myTickets: []
   },
 
-  tickets: [
-    {
-      id: 0,
-      title: "Reduce method not working",
-      description:
-        "words.reduce( word => word....) Doesn't work. Please explain reduce to me",
-      category: "JavaScript",
-      comments: [],
-      resolved: false,
-      assigned: false,
-      createdBY: {
-        id: 1337
-      }
-    },
-    {
-      id: 1,
-      title: "I can't deploy to Netlify",
-      description:
-        "Netlify Keeps giving me an error message when I go to deploy my react Application. Please Help",
-      category: "React",
-      comments: [],
-      resolved: false,
-      assigned: false,
-      createdBY: {
-        id: 1337
-      }
-    }
-  ],
+  tickets: [],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   isAdmin: false
 };
@@ -137,7 +110,7 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         creatingTicket: false,
-        tickets: action.payload
+        tickets: [...state.tickets, action.payload]
       };
     case ADD_TICKET_FAIL:
       return {
@@ -173,7 +146,7 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         updatingTicket: false,
-        tickets: action.payload
+        tickets: [...state.tickets, action.payload]
       };
     case EDIT_TICKET_FAIL:
       return {
