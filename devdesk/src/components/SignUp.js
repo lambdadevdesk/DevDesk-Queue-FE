@@ -3,6 +3,18 @@ import React, { Component } from "react";
 import { LoginForm, LoginHeader } from "../helpers";
 
 class SignUp extends Component {
+    state = { credentials: { name: '', email: '', username: '', password: '' } }
+
+    handleChange = e => {
+        this.setState({
+            credentials: {
+                ...this.state.credentials,
+                [e.target.name]: [e.target.value]
+            }
+        })
+    }
+
+    signup = e
   render() {
     return (
       <div>
