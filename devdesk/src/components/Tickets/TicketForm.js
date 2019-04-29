@@ -18,7 +18,7 @@ class TicketForm extends Component {
 
   handleChange = e => {
     this.setState({
-      ticket: { ...this.state.ticket, [e.target.name]: [e.target.value] }
+      ticket: { ...this.state.ticket, [e.target.name]: e.target.value }
     });
   };
 
@@ -27,10 +27,8 @@ class TicketForm extends Component {
     this.props.addTicket(this.state.ticket);
     this.props.history.push(`/tickets`);
     this.setState({
-      ticket: {
-        title: "",
-        description: ""
-      }
+      title: "",
+      description: ""
     });
   };
 
@@ -53,9 +51,7 @@ class TicketForm extends Component {
             <label htmlFor="category"> Category:</label>
             <select onChange={this.handleChange} name="category" id="category">
               {this.props.categories.map((category, i) => (
-                <option key={i} value={category}>
-                  {category}
-                </option>
+                <option key={i}>{category}</option>
               ))}
             </select>
           </div>
