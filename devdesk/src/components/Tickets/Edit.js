@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { updateTestTicket } from "../../actions";
+import { editTicket } from "../../actions";
 
 import { SForm, TicketH1 } from "../../helpers";
 import Dashboard from "../Dashboard/Dashboard";
@@ -13,7 +13,6 @@ class Edit extends Component {
       title: "",
       description: "",
       category: "",
-      comments: [],
       resolved: false,
       assigned: false
     }
@@ -27,7 +26,7 @@ class Edit extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.updateTestTicket(this.state.ticket, this.state.ticket.id);
+    this.props.editTicket(this.state.ticket.id, this.state.ticket);
     this.props.history.push("/tickets");
   };
   render() {
@@ -86,5 +85,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateTestTicket }
+  { editTicket }
 )(Edit);
