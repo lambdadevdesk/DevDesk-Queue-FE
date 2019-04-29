@@ -20,7 +20,7 @@ class Edit extends Component {
 
   handleChange = e => {
     this.setState({
-      ticket: { ...this.state.ticket, [e.target.name]: [e.target.value] }
+      ticket: { ...this.state.ticket, [e.target.name]: e.target.value }
     });
   };
 

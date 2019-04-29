@@ -51,7 +51,8 @@ export const editTicket = (id, updatedTicket) => dispatch => {
       console.log(res.data);
       dispatch({
         type: EDIT_TICKET_SUCCESS,
-        payload: res.data
+        payload: res.data,
+        id
       });
     })
     .catch(err => {
