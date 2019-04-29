@@ -13,7 +13,30 @@ class SignUp extends Component {
           />
           <h1>Lambda School</h1>
         </LoginHeader>
-        <LoginForm 
+        <LoginForm onSubmit={this.signup} actions="" autoComplete="off">
+        <input
+            onChange={this.handleChange}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={this.state.credentials.username}
+            required
+          />
+          <input
+            onChange={this.handleChange}
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={this.state.credentials.password}
+            required
+          />
+          <button type="submit">Login</button>
+          <div className="extra">
+            <p>
+              Don't have an Account? <a href="/sign_up">Sign up</a>
+            </p>
+          </div>
+        </LoginForm>
       </div>
     );
   }

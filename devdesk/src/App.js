@@ -25,7 +25,7 @@ function App() {
         <Route path="/new-ticket" component={TicketForm} />
         <Route path="/edit/:id" component={Edit} />
         <PrivateRoute exact path="/tickets" component={TicketViews} />
-        <Route exact path="/sign_up" />
+        <Route exact path="/sign_up" component={SignUp}/>
       </Layout>
     </Router>
   );
