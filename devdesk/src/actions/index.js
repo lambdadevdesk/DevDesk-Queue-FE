@@ -7,7 +7,9 @@ export const FETCH_DATA_FAIL = "FETCH_DATA_FAIL";
 export const getData = () => dispatch => {
   dispatch({ type: FETCH_DATA_START });
   axios
-    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets`)
+    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(res => {
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
@@ -23,7 +25,9 @@ export const ADD_TICKET_FAIL = "ADD_TICKET_FAIL";
 export const addTicket = newTicket => dispatch => {
   dispatch({ type: ADD_TICKET_START });
   axios
-    .post("https://devdeskqueue-be.herokuapp.com/api/tickets", newTicket)
+    .post("https://devdeskqueue-be.herokuapp.com/api/tickets", newTicket, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(res => {
       console.log(res);
       dispatch({
@@ -45,7 +49,10 @@ export const editTicket = (id, updatedTicket) => dispatch => {
   axios
     .put(
       `https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`,
-      updatedTicket
+      updatedTicket,
+      {
+        headers: { Authorization: localStorage.getItem("token") }
+      }
     )
     .then(res => {
       console.log(res.data);
@@ -67,9 +74,10 @@ export const DELETE_TICKET_FAIL = "DELETE_TICKET_FAIL";
 export const deleteTicket = id => dispatch => {
   dispatch({ type: DELETE_TICKET_START });
   axios
-    .delete(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`)
+    .delete(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: DELETE_TICKET_SUCCESS,
         payload: res.data
@@ -87,68 +95,32 @@ export const deleteTicket = id => dispatch => {
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_RESOLVED = "LOGIN_RESOLVED";
 
 export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
-  localStorage.removeItem("token");
+
   return axios
-    .post("https://devdeskqueue-be.herokuapp.com/api/", credentials)
+    .post("https://devdeskqueue-be.herokuapp.com/api/login", credentials)
     .then(res => {
-      localStorage.setItem("token", res.data.payload);
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      });
+      if (res.status === 200) {
+        dispatch({ type: LOGIN_SUCCESS });
+        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
+      }
+      localStorage.setItem("token", res.data.token);
     })
     .catch(err => {
-      if (err.response.status === 403) {
+      if (err.response.status === 500 || err.response.status === 404) {
         localStorage.removeItem("token");
+        dispatch({ type: LOGIN_FAIL, payload: err.response.data.msg });
       }
-      dispatch({ type: LOGIN_FAIL, payload: err.response });
+      setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
     });
 };
 
 //
 //Test actions and action creators to test form functionality
 //
-
-export const ADD_TEST_TICKET = "ADD_TEST_TICKET";
-export const CREATE_TEST_TICKET = "CREATE_TEST_TICKET";
-export const VIEW_TEST_TICKETS = "VIEW_TEST_TICKETS";
-
-export const testAddTicket = newTicket => dispatch => {
-  dispatch({ type: ADD_TEST_TICKET, payload: newTicket });
-};
-
-export const createTicket = () => dispatch => {
-  dispatch({ type: CREATE_TEST_TICKET });
-};
-export const viewTickets = () => dispatch => {
-  dispatch({ type: VIEW_TEST_TICKETS });
-};
-
-//
-//  Test Actions and Action Creators to test delete functionality
-//
-
-export const DELETE_TEST_TICKET_SUCCESS = "DELETE_TEST_TICKET_SUCCESS";
-
-export const testDeleteTicket = id => {
-  return {
-    type: DELETE_TEST_TICKET_SUCCESS,
-    payload: id
-  };
-};
-
-export const UPDATE_TEST_TICKET = "UPDATE_TEST_TICKET";
-
-export const updateTestTicket = (ticket, id) => dispatch => {
-  dispatch({
-    type: UPDATE_TEST_TICKET,
-    ticket,
-    id
-  });
-};
 
 //Test to toggle Admin/Student View
 

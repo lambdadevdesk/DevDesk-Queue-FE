@@ -9,9 +9,9 @@ import thunk from "redux-thunk";
 import App from "./App";
 import rootReducer from "./reducers";
 
-import { setToken } from './components/token';
+import { setToken } from "./components/token";
 
-const store = createStore(rootReducer, applyMiddleware(thunk, setToken));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

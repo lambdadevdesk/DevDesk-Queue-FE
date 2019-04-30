@@ -14,15 +14,11 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGIN_RESOLVED,
 
   //
   // Tests
   //
-  ADD_TEST_TICKET,
-  CREATE_TEST_TICKET,
-  VIEW_TEST_TICKETS,
-  DELETE_TEST_TICKET_SUCCESS,
-  UPDATE_TEST_TICKET,
   TOGGLE_ADMIN,
   RESOLVE_TICKET,
   ASSIGN_TICKET
@@ -171,6 +167,13 @@ const reducers = (state = initialState, action) => {
         credentials: action.credentials
       };
     }
+    case LOGIN_RESOLVED: {
+      return {
+        ...state,
+        isLoggingIn: false,
+        status: ""
+      };
+    }
     case LOGIN_FAIL: {
       return {
         ...state,
@@ -178,39 +181,6 @@ const reducers = (state = initialState, action) => {
       };
     }
     // Test Reducers to testing form functionality
-    case ADD_TEST_TICKET:
-      return {
-        ...state,
-        error: "",
-        tickets: [...state.tickets, action.payload],
-        creatingTicket: false
-      };
-    case CREATE_TEST_TICKET:
-      return {
-        ...state,
-        creatingTicket: true
-      };
-    case VIEW_TEST_TICKETS:
-      return {
-        ...state,
-        creatingTicket: false
-      };
-    // Testing Delete
-    case DELETE_TEST_TICKET_SUCCESS:
-      return {
-        ...state,
-        tickets: state.tickets.filter(ticket => ticket.id !== action.payload)
-      };
-    case UPDATE_TEST_TICKET:
-      return {
-        ...state,
-        tickets: state.tickets.map(ticket => {
-          if (Number(ticket.id) === Number(action.id)) {
-            ticket = action.ticket;
-          }
-          return ticket;
-        })
-      };
     case TOGGLE_ADMIN:
       return {
         ...state,

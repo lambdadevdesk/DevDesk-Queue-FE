@@ -20,7 +20,9 @@ class Login extends Component {
   login = e => {
     e.preventDefault();
     this.props.login(this.state.credentials).then(() => {
-      this.props.history.push("/tickets");
+      setTimeout(() => {
+        this.props.history.push("/tickets");
+      }, 2000);
     });
     this.setState({
       credentials: {
