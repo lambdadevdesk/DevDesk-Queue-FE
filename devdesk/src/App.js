@@ -17,15 +17,17 @@ function App() {
       <Layout>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={Login} />
-        <Route
+        <PrivateRoute
           path="/tickets/:id"
           exact
-          render={props => <TicketCard {...props} />}
+          component={props => <TicketCard {...props} />}
         />
-        <Route path="/new-ticket" component={TicketForm} />
-        <Route path="/edit/:id" component={Edit} />
-        <Route path="/tickets" component={TicketViews} />
-        {/* <PrivateRoute exact path="/tickets" component={TicketViews} /> */}
+        <PrivateRoute
+          path="/new-ticket"
+          component={props => <TicketForm {...props} />}
+        />
+        <PrivateRoute path="/edit/:id" component={Edit} />
+        <PrivateRoute exact path="/tickets" component={TicketViews} />
         <Route exact path="/sign-up" component={SignUp} />
       </Layout>
     </Router>
