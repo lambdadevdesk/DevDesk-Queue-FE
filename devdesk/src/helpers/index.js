@@ -199,8 +199,8 @@ export const SForm = styled.form`
 export const DashboardDiv = styled.div`
   display: flex;
   .dash-panel {
-    width: 15%;
-    height: 81vh;
+    width: 250px;
+    height: 85vh;
     background: #efeff3;
   }
   .dash-main {
