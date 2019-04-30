@@ -23,7 +23,7 @@ const Menu = props => {
         />
         <NavLink to="/tickets">Tickets</NavLink>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/Login">Login</NavLink>
+        <NavLink to="/login">Login</NavLink>
       </div>
     </MenuNav>
   );

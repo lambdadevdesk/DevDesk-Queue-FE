@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import { LoginForm, LoginHeader } from "../helpers";
 import { connect } from "react-redux";
@@ -11,7 +12,7 @@ class Login extends Component {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        [e.target.name]: [e.target.value]
+        [e.target.name]: e.target.value
       }
     });
   };
@@ -60,7 +61,7 @@ class Login extends Component {
           <button type="submit">Login</button>
           <div className="extra">
             <p>
-              Don't have an Account? <a href="/sign_up">Sign up</a>
+              Don't have an Account? <Link to="/sign-up">Sign up!</Link>
             </p>
           </div>
         </LoginForm>

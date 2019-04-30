@@ -69,6 +69,11 @@ export const LoginForm = styled.form`
   border-radius: 5px;
   box-shadow: #999 1px 2px 5px;
 
+  a {
+    color: #08addd;
+    text-decoration: none;
+  }
+
   input {
     font-size: 1rem;
     margin-bottom: 1rem;
