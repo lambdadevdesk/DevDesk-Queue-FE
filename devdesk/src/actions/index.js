@@ -92,13 +92,12 @@ export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   localStorage.removeItem("token");
   return axios
-    .post("", credentials)
-    .this(res => {
+    .post("https://devdeskqueue-be.herokuapp.com/api/", credentials)
+    .then(res => {
       localStorage.setItem("token", res.data.payload);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data,
-        credentials: credentials
+        payload: res.data
       });
     })
     .catch(err => {
