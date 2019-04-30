@@ -30,10 +30,12 @@ class TicketList extends React.Component {
               id={ticket.id}
               title={ticket.title}
               category={ticket.category}
+              createdBy={ticket.user_id}
+              assigned={ticket.assigned}
+              assignedUser={ticket.assigned_user}
               description={ticket.description}
               deleteTicket={this.deleteTicket}
               assignTicket={this.assignTicket}
-              assigned={ticket.assigned}
               userRole={this.props.isAdmin}
             />
           ))}

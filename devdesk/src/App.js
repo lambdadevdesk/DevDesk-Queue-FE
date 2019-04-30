@@ -24,7 +24,8 @@ function App() {
         />
         <Route path="/new-ticket" component={TicketForm} />
         <Route path="/edit/:id" component={Edit} />
-        <PrivateRoute exact path="/tickets" component={TicketViews} />
+        <Route path="/tickets" component={TicketViews} />
+        {/* <PrivateRoute exact path="/tickets" component={TicketViews} /> */}
         <Route exact path="/sign-up" component={SignUp} />
       </Layout>
     </Router>
