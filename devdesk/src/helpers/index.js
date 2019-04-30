@@ -245,6 +245,44 @@ export const ItemDiv = styled.div`
     border-radius: 4px 4px 2px 2px;
     border-bottom: 2px solid #1e50ee;
     box-shadow: 0 1px 3px 0 #d4d4d5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+
+    .top-section {
+      display: flex;
+      padding-bottom: 1rem;
+
+      .status {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+      }
+      .ticket-info {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+      }
+    }
+
+    .bottom-section {
+      display: flex;
+      .buttons {
+        display: flex;
+        width: 20%;
+        button {
+          margin: 0;
+          padding: 0;
+          /* width: 20%; */
+        }
+      }
+      .meta-tags {
+        display: flex;
+        width: 80%;
+        justify-content: space-between;
+      }
+    }
 
     p {
       word-wrap: break-word;
