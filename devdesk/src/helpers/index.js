@@ -200,7 +200,7 @@ export const DashboardDiv = styled.div`
   display: flex;
   .dash-panel {
     width: 250px;
-    height: 81vh;
+    height: 85vh;
     background: #efeff3;
   }
   .dash-main {
