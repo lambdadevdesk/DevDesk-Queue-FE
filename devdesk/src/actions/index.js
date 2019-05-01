@@ -12,7 +12,7 @@ export const getData = () => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
-      console.log('inside get data');
+      console.log("inside get data");
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -202,16 +202,4 @@ export const signup = user => dispatch => {
     .catch(err => {
       dispatch({ type: SIGNUP_FAIL, payload: err.response });
     });
-};
-
-//
-//Test actions and action creators to test form functionality
-//
-
-//Test to toggle Admin/Student View
-
-export const TOGGLE_ADMIN = "TOGGLE_ADMIN";
-
-export const toggleAdmin = () => dispatch => {
-  dispatch({ type: TOGGLE_ADMIN });
 };

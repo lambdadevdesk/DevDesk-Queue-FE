@@ -16,6 +16,7 @@ import {
   LOGIN_FAIL,
   LOGIN_RESOLVED,
   FETCH_USER_SUCCESS,
+  FETCH_USER_FAIL,
   RESOLVE_TICKET_START,
   RESOLVE_TICKET_SUCCESS,
   RESOLVE_TICKET_FAIL,
@@ -24,13 +25,7 @@ import {
   ASSIGN_TICKET_FAIL,
   SIGNUP_START,
   SIGNUP_SUCCESS,
-  SIGNUP_FAIL,
-
-
-  //
-  // Tests
-  //
-  TOGGLE_ADMIN
+  SIGNUP_FAIL
 } from "../actions";
 
 const initialState = {
@@ -59,9 +54,7 @@ const initialState = {
   tickets: [],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   isAdmin: false
-
 };
-
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
@@ -188,13 +181,6 @@ const reducers = (state = initialState, action) => {
         error: action.payload
       };
     }
-
-    // Test Reducers to testing form functionality
-    case TOGGLE_ADMIN:
-      return {
-        ...state,
-        isAdmin: !state.isAdmin
-      };
     case RESOLVE_TICKET_START:
       const editTicket = state.tickets.map(ticket => {
         if (Number(ticket.id) === Number(action.id)) {
@@ -243,6 +229,12 @@ const reducers = (state = initialState, action) => {
         ...state,
         user: loggedUser
       };
+    case FETCH_USER_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+
     default:
       return state;
   }
