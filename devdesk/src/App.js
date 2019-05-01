@@ -10,6 +10,7 @@ import TicketForm from "./components/Tickets/TicketForm";
 import TicketCard from "./components/Tickets/TicketCard";
 import HomePage from "./components/HomePage";
 import Edit from "./components/Tickets/Edit";
+import MyTickets from "./components/MyTickets";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           path="/new-ticket"
           component={props => <TicketForm {...props} />}
         />
+        <PrivateRoute path="/my-tickets" component={MyTickets} />
         <PrivateRoute path="/edit/:id" component={Edit} />
         <PrivateRoute exact path="/tickets" component={TicketViews} />
         <Route exact path="/sign-up" component={SignUp} />
