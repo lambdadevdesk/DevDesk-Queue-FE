@@ -15,6 +15,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGIN_RESOLVED,
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
 
   //
   // Tests
@@ -28,54 +31,15 @@ const initialState = {
   errorStatusCode: null,
   fetchingData: false,
   isLoggingIn: false,
+  isSigningUp: false,
   creatingTicket: false,
   updatingTicket: false,
   resolvingTicket: false,
   deletingTicket: false,
   status: null,
   error: null,
-
-  credentials: [],
-  students: [
-    {
-      id: 1337,
-      name: "Mace Windu",
-      email: "Mace.Windu@2ez.gg",
-      cohort: "FSWPT - 4",
-      isAdmin: false,
-      openedTickets: []
-    }
-  ],
-  admins: [
-    {
-      id: 1007,
-      name: "Admin",
-      email: "Admin@example.com",
-      isAdmin: true,
-      myTickets: []
-    }
-  ],
-  student: {
-    id: 1337,
-    name: "Mace Windu",
-    email: "Mace.Windu@2ez.gg",
-    cohort: "FSWPT - 4",
-    isAdmin: false,
-    openedTickets: []
-  },
-  admin: {
-    id: 1007,
-    name: "Admin",
-    email: "Admin@example.com",
-    isAdmin: true,
-    myTickets: []
-  },
-
-  tickets: [],
-  categories: ["None", "React", "JavaScript", "HTML", "CSS"],
-  isAdmin: false
+  credentials: []
 };
-
 const reducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA_START:
@@ -180,6 +144,27 @@ const reducers = (state = initialState, action) => {
         isLoggingIn: false
       };
     }
+    case SIGNUP_START: {
+      return {
+        ...state,
+        isSigningUp: true
+      };
+    }
+    case SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        isSigningUp: false,
+        user: action.user
+      };
+    }
+    case SIGNUP_FAIL: {
+      return {
+        ...state,
+        isSigningUp: false,
+        error: action.payload
+      };
+    }
+
     // Test Reducers to testing form functionality
     case TOGGLE_ADMIN:
       return {

@@ -119,6 +119,26 @@ export const login = credentials => dispatch => {
 };
 
 //
+// Sign Up Actions
+//
+
+export const SIGNUP_START = "SIGNUP_START";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAIL = "SIGNUP_FAIL";
+
+export const signup = user => dispatch => {
+  dispatch({ type: SIGNUP_START });
+  axios
+    .put("https://devdeskqueue-be.herokuapp.com/api/register", user)
+    .then(res => {
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: SIGNUP_FAIL, payload: err.response });
+    });
+};
+
+//
 //Test actions and action creators to test form functionality
 //
 
