@@ -7,7 +7,7 @@ const TicketItem = props => {
       <div className="top-section">
         <div className="status">
           <p>#{props.id}</p>
-          <p>{props.resolved}Test</p>
+          <p>{props.resolved ? "Closed" : "Open"}</p>
         </div>
         <Link to={`/tickets/${props.id}`}>
           <div className="ticket-info">
@@ -24,7 +24,9 @@ const TicketItem = props => {
                 Assign to List
               </button>
             ) : (
-              <button onClick={() => props.assignTicket(props.id)}>
+              <button
+                onClick={() => props.assignTicket(props.id, props.ticket)}
+              >
                 Claim Ticket
               </button>
             )

@@ -4,39 +4,42 @@ import { connect } from "react-redux";
 import { ItemDiv } from "../../helpers";
 
 import TicketItem from "./TicketItem";
-import { getData, deleteTicket, assignTicket } from "../../actions";
+import { getData, deleteTicket, assignTicket, getUser } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketList extends React.Component {
   componentDidMount() {
     this.props.getData();
+    this.props.getUser(this.props.user.id);
   }
 
   deleteTicket = id => {
     this.props.deleteTicket(id);
   };
 
-  assignTicket = id => {
-    this.props.assignTicket(id);
+  assignTicket = (id, ticket) => {
+    this.props.assignTicket(id, ticket);
   };
 
   render() {
     return (
-      <Dashboard userRole={this.props.isAdmin}>
+      <Dashboard user={this.props.user} userRole={this.props.user.isAdmin}>
         <ItemDiv>
           {this.props.tickets.map(ticket => (
             <TicketItem
               key={ticket.id}
               id={ticket.id}
+              ticket={ticket}
               title={ticket.title}
               category={ticket.category}
               createdBy={ticket.user_id}
               assigned={ticket.assigned}
+              resolved={ticket.resolved}
               assignedUser={ticket.assigned_user}
               description={ticket.description}
               deleteTicket={this.deleteTicket}
               assignTicket={this.assignTicket}
-              userRole={this.props.isAdmin}
+              userRole={this.props.user.isAdmin}
             />
           ))}
         </ItemDiv>
@@ -49,12 +52,12 @@ const mapStateToProps = state => {
   return {
     tickets: state.tickets,
     fetchingData: state.fetchingData,
-    isAdmin: state.isAdmin,
-    assigned: state.assigned
+    assigned: state.assigned,
+    user: state.user
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getData, deleteTicket, assignTicket }
+  { getData, deleteTicket, assignTicket, getUser }
 )(TicketList);
