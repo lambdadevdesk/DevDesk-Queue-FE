@@ -22,6 +22,10 @@ import {
   ASSIGN_TICKET_START,
   ASSIGN_TICKET_SUCCESS,
   ASSIGN_TICKET_FAIL,
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
+
 
   //
   // Tests
@@ -34,13 +38,14 @@ const initialState = {
   fetchingData: false,
   isLoggingIn: false,
   isLoggedIn: false,
+  isSigningUp: false,
+
   creatingTicket: false,
   updatingTicket: false,
   resolvingTicket: false,
   deletingTicket: false,
   status: null,
   error: null,
-
   credentials: [],
 
   user: {
@@ -54,7 +59,9 @@ const initialState = {
   tickets: [],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   isAdmin: false
+
 };
+
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
@@ -161,6 +168,27 @@ const reducers = (state = initialState, action) => {
         isLoggingIn: false
       };
     }
+    case SIGNUP_START: {
+      return {
+        ...state,
+        isSigningUp: true
+      };
+    }
+    case SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        isSigningUp: false,
+        user: action.user
+      };
+    }
+    case SIGNUP_FAIL: {
+      return {
+        ...state,
+        isSigningUp: false,
+        error: action.payload
+      };
+    }
+
     // Test Reducers to testing form functionality
     case TOGGLE_ADMIN:
       return {

@@ -12,6 +12,7 @@ export const getData = () => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
+      console.log('inside get data');
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -180,6 +181,26 @@ export const assignTicket = (id, updatedTicket) => dispatch => {
     })
     .catch(err => {
       dispatch({ type: ASSIGN_TICKET_FAIL, payload: err });
+    });
+};
+
+//
+// Sign Up Actions
+//
+
+export const SIGNUP_START = "SIGNUP_START";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAIL = "SIGNUP_FAIL";
+
+export const signup = user => dispatch => {
+  dispatch({ type: SIGNUP_START });
+  return axios
+    .post("https://devdeskqueue-be.herokuapp.com/api/register", user)
+    .then(res => {
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: SIGNUP_FAIL, payload: err.response });
     });
 };
 
