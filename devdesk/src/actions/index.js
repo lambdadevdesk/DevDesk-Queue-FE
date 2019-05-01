@@ -11,6 +11,7 @@ export const getData = () => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
+      console.log('inside get data');
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -105,7 +106,7 @@ export const login = credentials => dispatch => {
     .then(res => {
       if (res.status === 200) {
         dispatch({ type: LOGIN_SUCCESS });
-        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
+        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 5000);
       }
       localStorage.setItem("token", res.data.token);
     })
@@ -128,8 +129,8 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 
 export const signup = user => dispatch => {
   dispatch({ type: SIGNUP_START });
-  axios
-    .put("https://devdeskqueue-be.herokuapp.com/api/register", user)
+  return axios
+    .post("https://devdeskqueue-be.herokuapp.com/api/register", user)
     .then(res => {
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
     })

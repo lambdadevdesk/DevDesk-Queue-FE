@@ -38,8 +38,12 @@ const initialState = {
   deletingTicket: false,
   status: null,
   error: null,
-  credentials: []
+  credentials: [],
+  user: [],
+  tickets: []
 };
+
+
 const reducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA_START:

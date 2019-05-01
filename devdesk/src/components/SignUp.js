@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { LoginForm, LoginHeader } from "../helpers";
+import { connect } from "react-redux";
+import { signup } from "../actions";
 
 class SignUp extends Component {
   state = {
@@ -17,6 +19,12 @@ class SignUp extends Component {
   };
 
   signup = e => {
+    e.preventDefault();
+    this.props.signup(this.state.user).then(() => {
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 2000);
+    });
     this.setState({
       user: {
         ...this.state.user,
@@ -83,4 +91,12 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+  return {
+    isSigningUp: state.isSigningUp
+  };
+};
+export default connect(
+  mapStateToProps,
+  { signup }
+)(SignUp);
