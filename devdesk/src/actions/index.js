@@ -11,6 +11,7 @@ export const getData = () => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
+      console.log('inside get data');
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -105,7 +106,7 @@ export const login = credentials => dispatch => {
     .then(res => {
       if (res.status === 200) {
         dispatch({ type: LOGIN_SUCCESS });
-        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
+        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 5000);
       }
       localStorage.setItem("token", res.data.token);
     })
@@ -115,6 +116,26 @@ export const login = credentials => dispatch => {
         dispatch({ type: LOGIN_FAIL, payload: err.response.data.msg });
       }
       setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
+    });
+};
+
+//
+// Sign Up Actions
+//
+
+export const SIGNUP_START = "SIGNUP_START";
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+export const SIGNUP_FAIL = "SIGNUP_FAIL";
+
+export const signup = user => dispatch => {
+  dispatch({ type: SIGNUP_START });
+  return axios
+    .post("https://devdeskqueue-be.herokuapp.com/api/register", user)
+    .then(res => {
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: SIGNUP_FAIL, payload: err.response });
     });
 };
 

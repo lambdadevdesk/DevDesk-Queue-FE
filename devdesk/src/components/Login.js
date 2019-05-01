@@ -22,7 +22,7 @@ class Login extends Component {
     this.props.login(this.state.credentials).then(() => {
       setTimeout(() => {
         this.props.history.push("/tickets");
-      }, 2000);
+      }, 5000);
     });
     this.setState({
       credentials: {

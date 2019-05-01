@@ -1,27 +1,38 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { LoginForm, LoginHeader } from "../helpers";
+import { connect } from "react-redux";
+import { signup } from "../actions";
 
 class SignUp extends Component {
-  state = { credentials: { name: "", email: "", username: "", password: "" } };
+  state = {
+    user: { username: "", password: "", email: "", role: "Student", cohort: "" }
+  };
 
   handleChange = e => {
     this.setState({
-      credentials: {
-        ...this.state.credentials,
+      user: {
+        ...this.state.user,
         [e.target.name]: e.target.value
       }
     });
   };
 
   signup = e => {
+    e.preventDefault();
+    this.props.signup(this.state.user).then(() => {
+      setTimeout(() => {
+        this.props.history.push("/login");
+      }, 2000);
+    });
     this.setState({
-      credentials: {
-        ...this.state.credentials,
-        name: "",
-        email: "",
+      user: {
+        ...this.state.user,
         username: "",
-        password: ""
+        password: "",
+        email: "",
+        role: "Student",
+        cohort: ""
       }
     });
   };
@@ -39,25 +50,9 @@ class SignUp extends Component {
           <input
             onChange={this.handleChange}
             type="text"
-            name="name"
-            placeholder="Name"
-            value={this.state.credentials.name}
-            required
-          />
-          <input
-            onChange={this.handleChange}
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.credentials.email}
-            required
-          />
-          <input
-            onChange={this.handleChange}
-            type="text"
             name="username"
             placeholder="Username"
-            value={this.state.credentials.username}
+            value={this.state.user.username}
             required
           />
           <input
@@ -65,7 +60,23 @@ class SignUp extends Component {
             type="text"
             name="password"
             placeholder="Password"
-            value={this.state.credentials.password}
+            value={this.state.user.password}
+            required
+          />
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={this.state.user.email}
+            required
+          />
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="cohort"
+            placeholder="Cohort"
+            value={this.state.user.cohort}
             required
           />
           <button type="submit">Sign Up!</button>
@@ -80,4 +91,12 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+  return {
+    isSigningUp: state.isSigningUp
+  };
+};
+export default connect(
+  mapStateToProps,
+  { signup }
+)(SignUp);
