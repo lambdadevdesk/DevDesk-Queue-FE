@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Link from "react-router-dom";
 import { connect } from "react-redux";
+import TicketViews from "../views/TicketViews";
 
 const MyTickets = props => {
-  return <div>{props.userRole ? (
-      props.assigned ? (
-          props.tickets.map()
-      )
-  )}</div>;
+  return (
+      // Role: is admin? is assigned? render list of assigned : render tickets that were created by user #
+    <div>
+      <h1>Role: is admin? is assigned? render list of assigned : render tickets that were created by user #</h1>
+    </div>
+  );
 };
 
 const mapStateToProps = state => {
