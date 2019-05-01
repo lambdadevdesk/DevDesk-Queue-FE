@@ -3,7 +3,11 @@ import Link from "react-router-dom";
 import { connect } from "react-redux";
 
 const MyTickets = props => {
-  return <div>{props.userRole ? <p>1</p> : <p>2</p>}</div>;
+  return <div>{props.userRole ? (
+      props.assigned ? (
+          props.tickets.map()
+      )
+  )}</div>;
 };
 
 const mapStateToProps = state => {
