@@ -15,19 +15,25 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGIN_RESOLVED,
+  FETCH_USER_SUCCESS,
+  RESOLVE_TICKET_START,
+  RESOLVE_TICKET_SUCCESS,
+  RESOLVE_TICKET_FAIL,
+  ASSIGN_TICKET_START,
+  ASSIGN_TICKET_SUCCESS,
+  ASSIGN_TICKET_FAIL,
 
   //
   // Tests
   //
-  TOGGLE_ADMIN,
-  RESOLVE_TICKET,
-  ASSIGN_TICKET
+  TOGGLE_ADMIN
 } from "../actions";
 
 const initialState = {
   errorStatusCode: null,
   fetchingData: false,
   isLoggingIn: false,
+  isLoggedIn: false,
   creatingTicket: false,
   updatingTicket: false,
   resolvingTicket: false,
@@ -36,39 +42,13 @@ const initialState = {
   error: null,
 
   credentials: [],
-  students: [
-    {
-      id: 1337,
-      name: "Mace Windu",
-      email: "Mace.Windu@2ez.gg",
-      cohort: "FSWPT - 4",
-      isAdmin: false,
-      openedTickets: []
-    }
-  ],
-  admins: [
-    {
-      id: 1007,
-      name: "Admin",
-      email: "Admin@example.com",
-      isAdmin: true,
-      myTickets: []
-    }
-  ],
-  student: {
-    id: 1337,
-    name: "Mace Windu",
-    email: "Mace.Windu@2ez.gg",
-    cohort: "FSWPT - 4",
-    isAdmin: false,
-    openedTickets: []
-  },
-  admin: {
-    id: 1007,
-    name: "Admin",
-    email: "Admin@example.com",
-    isAdmin: true,
-    myTickets: []
+
+  user: {
+    id: "",
+    cohort: null,
+    email: "",
+    role: "",
+    username: ""
   },
 
   tickets: [],
@@ -164,7 +144,8 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
-        credentials: action.credentials
+        isLoggedIn: true,
+        user: { ...state.user, id: action.userId }
       };
     }
     case LOGIN_RESOLVED: {
@@ -186,27 +167,54 @@ const reducers = (state = initialState, action) => {
         ...state,
         isAdmin: !state.isAdmin
       };
-    case RESOLVE_TICKET:
+    case RESOLVE_TICKET_START:
+      const editTicket = state.tickets.map(ticket => {
+        if (Number(ticket.id) === Number(action.id)) {
+          ticket.resolved = !ticket.resolved;
+        }
+        return ticket;
+      });
       return {
         ...state,
-        tickets: state.tickets.map(ticket => {
-          if (Number(ticket.id) === Number(action.id)) {
-            ticket.resolved = !ticket.resolved;
-          }
-          return ticket;
-        })
+        tickets: editTicket
       };
-    case ASSIGN_TICKET:
+    case RESOLVE_TICKET_SUCCESS:
       return {
         ...state,
-        tickets: state.tickets.map(ticket => {
-          if (Number(ticket.id) === Number(action.id)) {
-            ticket.assigned = !ticket.assigned;
-          }
-          return ticket;
-        })
+        tickets: [...state.ticket, action.payload]
       };
-
+    case RESOLVE_TICKET_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case ASSIGN_TICKET_START:
+      const assignedTicket = state.tickets.map(ticket => {
+        if (Number(ticket.id) === Number(action.id)) {
+          ticket.assigned = !ticket.assigned;
+        }
+        return ticket;
+      });
+      return {
+        ...state,
+        tickets: assignedTicket
+      };
+    case ASSIGN_TICKET_SUCCESS:
+      return {
+        ...state,
+        tickets: [...state.tickets, action.payload]
+      };
+    case ASSIGN_TICKET_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case FETCH_USER_SUCCESS:
+      const loggedUser = action.payload.find(users => users.id === action.id);
+      return {
+        ...state,
+        user: loggedUser
+      };
     default:
       return state;
   }

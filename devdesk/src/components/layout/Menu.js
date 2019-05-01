@@ -23,14 +23,16 @@ const Menu = props => {
         />
         <NavLink to="/tickets">Tickets</NavLink>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login">{props.isLoggedIn ? "Logout" : "Login"}</NavLink>
       </div>
     </MenuNav>
   );
 };
 
 const mapStateToProps = state => {
-  return state;
+  return {
+    isLoggedIn: state.isLoggedIn
+  };
 };
 
 export default connect(

@@ -29,8 +29,8 @@ const TicketCard = props => {
         </div>
         <div className="ticket-content">
           <div>
-            {props.isAdmin ? (
-              <button onClick={() => props.resolveTicket(ticket.id)}>
+            {props.userRole ? (
+              <button onClick={() => props.resolveTicket(ticket.id, ticket)}>
                 {ticket.resolved ? "Reopen" : "Resolve"}
               </button>
             ) : (
@@ -50,7 +50,7 @@ const TicketCard = props => {
 const mapStateToProps = state => {
   return {
     tickets: state.tickets,
-    isAdmin: state.isAdmin
+    userRole: state.user.isAdmin
   };
 };
 
