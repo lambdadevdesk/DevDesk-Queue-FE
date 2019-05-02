@@ -11,7 +11,8 @@ const TicketItem = props => {
         </div>
         <Link to={`/tickets/${props.id}`}>
           <div className="ticket-info">
-            <h1>{props.title}</h1>
+            <h1 className='ticket-title'>{props.title}</h1>
+    
             <p>{props.description}</p>
           </div>
         </Link>

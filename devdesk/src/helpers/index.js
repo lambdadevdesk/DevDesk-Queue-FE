@@ -274,8 +274,9 @@ export const ItemDiv = styled.div`
       }
       .ticket-info {
         display: flex;
-        flex-direction: column;
-        width: 80%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
       }
     }
 
@@ -283,9 +284,10 @@ export const ItemDiv = styled.div`
       display: flex;
       .buttons {
         display: flex;
-        width: 20%;
+        flex-direction: column;
+        width: 60px;
         button {
-          margin: 0;
+          margin-top: 5px;
           padding: 0;
           /* width: 20%; */
         }
