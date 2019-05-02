@@ -4,7 +4,6 @@ import DashboardMenu from "./DashboardMenu";
 import { DashboardDiv } from "../../helpers";
 
 const Dashboard = props => {
-  console.log(props.user);
   return (
     <DashboardDiv>
       <DashboardMenu user={props.user} />

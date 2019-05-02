@@ -1,4 +1,42 @@
 import axios from "axios";
+import axiosAuth from "../auth/axiosAuth";
+
+// Action to Perform Login operation
+
+export const LOGIN_START = "LOGIN_START";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_RESOLVED = "LOGIN_RESOLVED";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT_SUCCESS });
+};
+export const login = credentials => dispatch => {
+  dispatch({ type: LOGIN_START });
+
+  return axios
+    .post("https://devdeskqueue-be.herokuapp.com/api/login", credentials)
+    .then(res => {
+      if (res.status === 200) {
+        setTimeout(
+          () =>
+            dispatch({
+              type: LOGIN_SUCCESS,
+              user: res.data.user,
+              token: res.data.token
+            }),
+          2000
+        );
+        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
+      }
+    })
+    .catch(err => {
+      if (err.response.status === 500 || err.response.status === 404) {
+        dispatch({ type: LOGIN_FAIL, payload: err.response.data.msg });
+      }
+      setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
+    });
+};
 
 // Action to fetch list of tickets available
 
@@ -7,10 +45,8 @@ export const FETCH_DATA_SUCCESS = "FETCH_DATA_SUCCESS";
 export const FETCH_DATA_FAIL = "FETCH_DATA_FAIL";
 export const getData = () => dispatch => {
   dispatch({ type: FETCH_DATA_START });
-  axios
-    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  axiosAuth()
+    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets`)
     .then(res => {
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
@@ -26,10 +62,8 @@ export const ADD_TICKET_SUCCESS = "ADD_TICKET_SUCCESS";
 export const ADD_TICKET_FAIL = "ADD_TICKET_FAIL";
 export const addTicket = newTicket => dispatch => {
   dispatch({ type: ADD_TICKET_START });
-  axios
-    .post("https://devdeskqueue-be.herokuapp.com/api/tickets", newTicket, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  axiosAuth()
+    .post("https://devdeskqueue-be.herokuapp.com/api/tickets", newTicket)
     .then(res => {
       dispatch({
         type: ADD_TICKET_SUCCESS,
@@ -48,13 +82,10 @@ export const EDIT_TICKET_SUCCESS = "EDIT_TICKET_SUCCESS";
 export const EDIT_TICKET_FAIL = "EDIT_TICKET_FAIL";
 export const editTicket = (id, updatedTicket) => dispatch => {
   dispatch({ type: EDIT_TICKET_START });
-  axios
+  axiosAuth()
     .put(
       `https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`,
-      updatedTicket,
-      {
-        headers: { Authorization: localStorage.getItem("token") }
-      }
+      updatedTicket
     )
     .then(res => {
       dispatch({
@@ -75,10 +106,8 @@ export const DELETE_TICKET_SUCCESS = "DELETE_TICKET_SUCCESS";
 export const DELETE_TICKET_FAIL = "DELETE_TICKET_FAIL";
 export const deleteTicket = id => dispatch => {
   dispatch({ type: DELETE_TICKET_START });
-  axios
-    .delete(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  axiosAuth()
+    .delete(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`)
     .then(res => {
       dispatch({
         type: DELETE_TICKET_SUCCESS,
@@ -90,42 +119,6 @@ export const deleteTicket = id => dispatch => {
     });
 };
 
-// Action to Perform Login operation
-
-export const LOGIN_START = "LOGIN_START";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-export const LOGIN_RESOLVED = "LOGIN_RESOLVED";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const logout = () => dispatch => {
-  dispatch({ type: LOGOUT_SUCCESS });
-  localStorage.removeItem("token");
-};
-export const login = credentials => dispatch => {
-  dispatch({ type: LOGIN_START });
-
-  return axios
-    .post("https://devdeskqueue-be.herokuapp.com/api/login", credentials)
-    .then(res => {
-      if (res.status === 200) {
-        setTimeout(
-          () => dispatch({ type: LOGIN_SUCCESS, userId: res.data.user_id }),
-          2000
-        );
-        setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
-      }
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-    })
-    .catch(err => {
-      if (err.response.status === 500 || err.response.status === 404) {
-        localStorage.removeItem("token");
-        dispatch({ type: LOGIN_FAIL, payload: err.response.data.msg });
-      }
-      setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
-    });
-};
-
 // Action to get currently logged in user
 
 export const FETCH_USER_START = "FETCH_USER_START";
@@ -133,10 +126,8 @@ export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
 export const FETCH_USER_FAIL = "FETCH_USER_FAIL";
 export const getUser = id => dispatch => {
   dispatch({ type: FETCH_USER_START });
-  axios
-    .get(`https://devdeskqueue-be.herokuapp.com/api/users`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  axiosAuth()
+    .get(`https://devdeskqueue-be.herokuapp.com/api/users`)
     .then(res => {
       dispatch({ type: FETCH_USER_SUCCESS, payload: res.data, id });
     })
@@ -152,13 +143,10 @@ export const RESOLVE_TICKET_SUCCESS = "RESOLVE_TICKET_SUCCESS";
 export const RESOLVE_TICKET_FAIL = "RESOLVE_TICKET_FAIL";
 export const resolveTicket = (id, updatedTicket) => dispatch => {
   dispatch({ type: RESOLVE_TICKET_START, id });
-  axios
+  axiosAuth()
     .put(
       `https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`,
-      updatedTicket,
-      {
-        headers: { Authorization: localStorage.getItem("token") }
-      }
+      updatedTicket
     )
     .then(res => {
       dispatch({ type: RESOLVE_TICKET_SUCCESS, payload: res.data, id });
@@ -173,13 +161,10 @@ export const ASSIGN_TICKET_SUCCESS = "ASSIGN_TICKET_SUCCESS";
 export const ASSIGN_TICKET_FAIL = "ASSIGN_TICKET_FAIL";
 export const assignTicket = (id, updatedTicket) => dispatch => {
   dispatch({ type: ASSIGN_TICKET_START, id });
-  axios
+  axiosAuth()
     .put(
       `https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`,
-      updatedTicket,
-      {
-        headers: { Authorization: localStorage.getItem("token") }
-      }
+      updatedTicket
     )
     .then(res => {
       dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: res.data, id });
@@ -212,10 +197,8 @@ export const signup = user => dispatch => {
 export const FETCH_TICKET_SUCCESS = "FETCH_TICKET_SUCCESS";
 export const FETCH_TICKET_FAIL = "FETCH_TICKET_FAIL";
 export const getTickets = (role, id) => dispatch => {
-  axios
-    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/${role}/${id}`, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+  axiosAuth()
+    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/${role}/${id}`)
     .then(res => {
       dispatch({ type: FETCH_TICKET_SUCCESS, payload: res.data });
     })
