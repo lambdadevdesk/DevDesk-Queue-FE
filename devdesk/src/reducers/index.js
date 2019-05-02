@@ -14,6 +14,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT_SUCCESS,
   LOGIN_RESOLVED,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
@@ -144,7 +145,8 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
-        isLoggedIn: true
+        isLoggedIn: true,
+        user: action.user
       };
     }
     case LOGIN_RESOLVED: {
@@ -160,6 +162,11 @@ const reducers = (state = initialState, action) => {
         isLoggingIn: false
       };
     }
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: false
+      };
     case SIGNUP_START: {
       return {
         ...state,

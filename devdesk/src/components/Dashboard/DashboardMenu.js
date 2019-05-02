@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 import { DashNav } from "../../helpers";
 import ProfileCard from "../ProfileCard";
 
 const DashboardMenu = props => {
-  console.log(props.user);
   return (
     <DashNav className="dash-panel">
       <ProfileCard user={props.user} />
@@ -15,7 +13,7 @@ const DashboardMenu = props => {
           <Link to="/new-ticket">Create Ticket</Link>
         </li>
         <li>
-          {props.userRole ? (
+          {props.user.isAdmin ? (
             <Link to="/my-tickets">Claimed Tickets</Link>
           ) : (
             <Link to="/my-tickets">My Tickets</Link>
@@ -29,10 +27,4 @@ const DashboardMenu = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    // userRole: state.user.isAdmin
-  };
-};
-
-export default connect(mapStateToProps)(DashboardMenu);
+export default DashboardMenu;

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+import { logout } from "../../actions";
 import { MenuH1, MenuNav } from "../../helpers/index";
 
 const Menu = props => {
@@ -12,7 +13,10 @@ const Menu = props => {
       </div>
       <div>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/login">{props.isLoggedIn ? "Logout" : "Login"}</NavLink>
+        <NavLink to="/tickets">Tickets</NavLink>
+        <NavLink onClick={() => props.logout()} to="/login">
+          {props.isLoggedIn ? "Logout" : "Login"}
+        </NavLink>
       </div>
     </MenuNav>
   );
@@ -24,4 +28,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Menu);
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Menu);

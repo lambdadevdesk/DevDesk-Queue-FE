@@ -8,22 +8,22 @@ import { getData, deleteTicket, assignTicket, getUser } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketList extends React.Component {
-  state = {
-    loggedUser: {
-      id: "",
-      email: "",
-      cohort: "",
-      isAdmin: false
-    }
-  };
+  // state = {
+  //   loggedUser: {
+  //     id: "",
+  //     email: "",
+  //     cohort: "",
+  //     isAdmin: false
+  //   }
+  // };
 
   componentDidMount() {
     this.props.getData();
 
-    if (localStorage.hasOwnProperty("user")) {
-      const user = JSON.parse(localStorage.getItem("user"));
-      this.setState({ loggedUser: user });
-    }
+    // if (localStorage.hasOwnProperty("user")) {
+    //   const user = JSON.parse(localStorage.getItem("user"));
+    //   this.setState({ loggedUser: user });
+    // }
   }
 
   deleteTicket = id => {
@@ -35,9 +35,9 @@ class TicketList extends React.Component {
   };
 
   render() {
-    console.log(this.state.loggedUser);
+    const user = JSON.parse(localStorage.getItem("user"));
     return (
-      <Dashboard user={this.state.loggedUser}>
+      <Dashboard user={user}>
         <ItemDiv>
           {this.props.tickets.map(ticket => (
             <TicketItem
@@ -53,7 +53,7 @@ class TicketList extends React.Component {
               description={ticket.description}
               deleteTicket={this.deleteTicket}
               assignTicket={this.assignTicket}
-              userRole={this.state.loggedUser.isAdmin}
+              userRole={user.isAdmin}
             />
           ))}
         </ItemDiv>
@@ -64,9 +64,7 @@ class TicketList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tickets: state.tickets,
-    fetchingData: state.fetchingData,
-    assigned: state.assigned
+    tickets: state.tickets
   };
 };
 
