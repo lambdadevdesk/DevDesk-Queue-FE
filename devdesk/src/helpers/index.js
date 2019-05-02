@@ -20,7 +20,7 @@ export const MainDivApp = styled.div`
 
 export const SFooter = styled.footer`
   text-align: center;
-  background: #f7f7f7;
+  background: #fff;
   padding: 1.6rem 0;
 
   a {
@@ -37,14 +37,18 @@ export const MenuNav = styled.nav`
   a {
     text-decoration: none;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     margin: 0 1rem;
+    :hover {
+      color: #08addd;
+    }
   }
 `;
 
 export const MenuH1 = styled.h1`
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: #fff;
+  font-weight: bold;
   margin-left: 2rem;
 `;
 
@@ -201,10 +205,11 @@ export const DashboardDiv = styled.div`
   .dash-panel {
     width: 250px;
     height: 81vh;
-    background: #efeff3;
+    background: #fff;
   }
   .dash-main {
     width: 85%;
+    background: linear-gradient(to bottom right, #1e50ee 25%, #08addd 65%);
   }
 
   .profile-panel {
@@ -218,16 +223,22 @@ export const DashNav = styled.nav`
   color: #bb1333;
   text-align: center;
 
-  li:nth-child(odd) {
-    background: #f7f7f7;
-  }
   li {
     cursor: pointer;
     padding: 1rem 0;
+    border: 1px solid #002070;
+    border-radius: 4px;
+    margin: 0 auto;
+    width: 95%;
+    margin-bottom: 5px;
+    background: #55596d;
+    :hover {
+      background: #1e50ee;
+    }
   }
   a {
     text-decoration: none;
-    color: #bb1333;
+    color: #fff;
   }
 `;
 
@@ -242,14 +253,16 @@ export const ItemDiv = styled.div`
     padding: 1.2rem;
     margin: 1rem 1rem 0 1rem;
     border: 1px solid #d4d4d4;
-    border-radius: 4px 4px 2px 2px;
-    border-bottom: 2px solid #1e50ee;
-    box-shadow: 0 1px 3px 0 #d4d4d5;
+    border-radius: 4px;
+    box-shadow: 2px 2px 19px -4px rgba(85, 89, 109, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: space-between;
-
+    background: white;
+    :hover {
+      transform: scale(1.01);
+    }
     .top-section {
       display: flex;
       padding-bottom: 1rem;
@@ -261,8 +274,9 @@ export const ItemDiv = styled.div`
       }
       .ticket-info {
         display: flex;
-        flex-direction: column;
-        width: 80%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
       }
     }
 
@@ -270,9 +284,10 @@ export const ItemDiv = styled.div`
       display: flex;
       .buttons {
         display: flex;
-        width: 20%;
+        flex-direction: column;
+        width: 60px;
         button {
-          margin: 0;
+          margin-top: 5px;
           padding: 0;
           /* width: 20%; */
         }
@@ -291,5 +306,8 @@ export const ItemDiv = styled.div`
   a {
     text-decoration: none;
     color: #000;
+    :hover {
+      color: #08addd;
+    }
   }
 `;
