@@ -19,11 +19,12 @@ class TicketList extends React.Component {
 
   assignTicket = (id, ticket) => {
     this.props.assignTicket(id, ticket);
+    console.log(id, ticket);
   };
 
   render() {
     return (
-      <Dashboard user={this.props.user} userRole={this.props.user.isAdmin}>
+      <Dashboard>
         <ItemDiv>
           {this.props.tickets.map(ticket => (
             <TicketItem

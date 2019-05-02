@@ -20,7 +20,9 @@ const TicketItem = props => {
         <div className="buttons">
           {props.userRole ? (
             props.assigned ? (
-              <button onClick={() => props.assignTicket(props.id)}>
+              <button
+                onClick={() => props.assignTicket(props.id, props.ticket)}
+              >
                 Assign to List
               </button>
             ) : (
