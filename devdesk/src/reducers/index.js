@@ -34,7 +34,6 @@ const initialState = {
   isLoggingIn: false,
   isLoggedIn: false,
   isSigningUp: false,
-
   creatingTicket: false,
   updatingTicket: false,
   resolvingTicket: false,
