@@ -9,24 +9,19 @@ const ProfileCard = props => {
     margin: 2rem 0;
   `;
 
+  console.log(props.user);
   return (
     <ProfileDiv className="profile-panel">
-      <div className="profile-header">
+      {/* <div className="profile-header">
         <img src="" alt="" />
-        <h1>{props.user.username}</h1>
+        <h1>{props.user.firstName}</h1>
       </div>
       <div className="profile-content">
-        <p>Cohort: {props.user.cohort}</p>
+        <p>{props.user.lastName}</p>
         <p>{props.user.email}</p>
-      </div>
+      </div> */}
     </ProfileDiv>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
-
-export default connect(mapStateToProps)(ProfileCard);
+export default ProfileCard;

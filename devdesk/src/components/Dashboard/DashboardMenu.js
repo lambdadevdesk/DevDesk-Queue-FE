@@ -6,9 +6,10 @@ import { DashNav } from "../../helpers";
 import ProfileCard from "../ProfileCard";
 
 const DashboardMenu = props => {
+  console.log(props.user);
   return (
     <DashNav className="dash-panel">
-      <ProfileCard />
+      <ProfileCard user={props.user} />
       <ul>
         <li>
           <Link to="/new-ticket">Create Ticket</Link>
@@ -30,7 +31,7 @@ const DashboardMenu = props => {
 
 const mapStateToProps = state => {
   return {
-    userRole: state.user.isAdmin
+    // userRole: state.user.isAdmin
   };
 };
 
