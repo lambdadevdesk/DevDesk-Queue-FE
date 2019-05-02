@@ -12,7 +12,6 @@ export const getData = () => dispatch => {
       headers: { Authorization: localStorage.getItem("token") }
     })
     .then(res => {
-      console.log("inside get data");
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -116,6 +115,7 @@ export const login = credentials => dispatch => {
         setTimeout(() => dispatch({ type: LOGIN_RESOLVED }), 2000);
       }
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
     })
     .catch(err => {
       if (err.response.status === 500 || err.response.status === 404) {

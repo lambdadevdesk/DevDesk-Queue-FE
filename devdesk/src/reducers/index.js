@@ -144,8 +144,7 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
-        isLoggedIn: true,
-        user: { ...state.user, id: action.userId }
+        isLoggedIn: true
       };
     }
     case LOGIN_RESOLVED: {
@@ -204,9 +203,17 @@ const reducers = (state = initialState, action) => {
       };
     case ASSIGN_TICKET_START:
       const assignedTicket = state.tickets.map(ticket => {
-        if (Number(ticket.id) === Number(action.id)) {
+        if (
+          ticket.assigned_user === 0 &&
+          Number(ticket.id) === Number(action.id)
+        ) {
           ticket.assigned = !ticket.assigned;
           ticket.assigned_user = state.user.id;
+        } else if (
+          ticket.assigned_user !== 0 &&
+          Number(ticket.id) === Number(action.id)
+        ) {
+          ticket.assigned_user = 0;
         }
         return ticket;
       });
