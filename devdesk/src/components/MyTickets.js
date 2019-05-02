@@ -1,26 +1,26 @@
 import React, { Component } from "react";
-import Link from "react-router-dom";
 import { connect } from "react-redux";
 
+import { getTickets } from "../actions";
 
-const MyTickets = props => {
-  return (
-      // Role: is admin? is assigned? render list of assigned : render tickets that were created by user #
-    <div>
-      <h1>Role: is admin? is assigned? render list of assigned : render tickets that were created by user #</h1>
-    </div>
-  );
-};
+class MyTickets extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Test</h1>
+      </div>
+    );
+  }
+  componentDidMount() {
+    this.props.getTickets();
+  }
+}
 
 const mapStateToProps = state => {
-  return {
-    tickets: state.tickets,
-    isAdmin: state.isAdmin,
-    assigned: state.assigned
-  };
+  return state;
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getTickets }
 )(MyTickets);

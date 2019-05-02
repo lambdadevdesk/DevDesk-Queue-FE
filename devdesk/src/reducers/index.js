@@ -206,6 +206,7 @@ const reducers = (state = initialState, action) => {
       const assignedTicket = state.tickets.map(ticket => {
         if (Number(ticket.id) === Number(action.id)) {
           ticket.assigned = !ticket.assigned;
+          ticket.assigned_user = state.user.id;
         }
         return ticket;
       });
@@ -215,8 +216,8 @@ const reducers = (state = initialState, action) => {
       };
     case ASSIGN_TICKET_SUCCESS:
       return {
-        ...state,
-        tickets: [...state.tickets, action.payload]
+        ...state
+        // tickets: [...state.tickets, action.payload]
       };
     case ASSIGN_TICKET_FAIL:
       return {

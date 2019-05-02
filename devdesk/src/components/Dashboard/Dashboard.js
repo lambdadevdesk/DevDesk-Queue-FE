@@ -6,7 +6,7 @@ import { DashboardDiv } from "../../helpers";
 const Dashboard = props => {
   return (
     <DashboardDiv>
-      <DashboardMenu userRole={props.userRole} />
+      <DashboardMenu />
       <div className="dash-main">{props.children}</div>
     </DashboardDiv>
   );

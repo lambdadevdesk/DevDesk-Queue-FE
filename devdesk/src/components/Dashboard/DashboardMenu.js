@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { DashNav } from "../../helpers";
 import ProfileCard from "../ProfileCard";
@@ -27,4 +28,10 @@ const DashboardMenu = props => {
   );
 };
 
-export default DashboardMenu;
+const mapStateToProps = state => {
+  return {
+    userRole: state.user.isAdmin
+  };
+};
+
+export default connect(mapStateToProps)(DashboardMenu);

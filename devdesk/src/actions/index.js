@@ -97,6 +97,11 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGIN_RESOLVED = "LOGIN_RESOLVED";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT_SUCCESS });
+  localStorage.removeItem("token");
+};
 export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
 
@@ -177,7 +182,7 @@ export const assignTicket = (id, updatedTicket) => dispatch => {
       }
     )
     .then(res => {
-      dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: res.data });
+      dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: res.data, id });
     })
     .catch(err => {
       dispatch({ type: ASSIGN_TICKET_FAIL, payload: err });
@@ -201,5 +206,20 @@ export const signup = user => dispatch => {
     })
     .catch(err => {
       dispatch({ type: SIGNUP_FAIL, payload: err.response });
+    });
+};
+
+export const FETCH_TICKET_SUCCESS = "FETCH_TICKET_SUCCESS";
+export const FETCH_TICKET_FAIL = "FETCH_TICKET_FAIL";
+export const getTickets = (role, id) => dispatch => {
+  axios
+    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/${role}/${id}`, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
+    .then(res => {
+      dispatch({ type: FETCH_TICKET_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_DATA_FAIL, payload: err });
     });
 };
