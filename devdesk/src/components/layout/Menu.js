@@ -12,7 +12,7 @@ const Menu = props => {
         <MenuH1>DevDesk Queue</MenuH1>
       </div>
       <div>
-        <NavLink to="/">Home</NavLink>
+        <a href="https://devdeskqueue.shockin.dev/#">Home</a>
         <NavLink to="/tickets">Tickets</NavLink>
         <NavLink onClick={() => props.logout()} to="/login">
           {props.isLoggedIn ? "Logout" : "Login"}
