@@ -6,7 +6,15 @@ import { signup } from "../actions";
 
 class SignUp extends Component {
   state = {
-    user: { username: "", password: "", email: "", role: "Student", cohort: "" }
+    user: {
+      firstName: "",
+      lastName: "",
+      username: "",
+      password: "",
+      email: "",
+      isAdmin: false,
+      cohort: ""
+    }
   };
 
   handleChange = e => {
@@ -28,6 +36,8 @@ class SignUp extends Component {
     this.setState({
       user: {
         ...this.state.user,
+        firstName: "",
+        lastName: "",
         username: "",
         password: "",
         email: "",
@@ -47,6 +57,22 @@ class SignUp extends Component {
           <h1>Lambda School</h1>
         </LoginHeader>
         <LoginForm onSubmit={this.signup} actions="" autoComplete="off">
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={this.state.user.firstName}
+            required
+          />
+          <input
+            onChange={this.handleChange}
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={this.state.user.lastName}
+            required
+          />
           <input
             onChange={this.handleChange}
             type="text"
