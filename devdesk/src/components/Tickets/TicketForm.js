@@ -6,13 +6,15 @@ import { addTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketForm extends Component {
+  user = JSON.parse(localStorage.getItem("user"));
   state = {
     ticket: {
       title: "",
       description: "",
       category: "",
       resolved: false,
-      assigned: false
+      assigned: false,
+      user_id: this.user.user_id
     }
   };
 
@@ -28,7 +30,8 @@ class TicketForm extends Component {
     this.props.history.push(`/tickets`);
     this.setState({
       title: "",
-      description: ""
+      description: "",
+      user_id: ""
     });
   };
 

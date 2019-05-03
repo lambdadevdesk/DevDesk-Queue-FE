@@ -4,26 +4,12 @@ import { connect } from "react-redux";
 import { ItemDiv } from "../../helpers";
 
 import TicketItem from "./TicketItem";
-import { getData, deleteTicket, assignTicket, getUser } from "../../actions";
+import { getData, deleteTicket, assignTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketList extends React.Component {
-  // state = {
-  //   loggedUser: {
-  //     id: "",
-  //     email: "",
-  //     cohort: "",
-  //     isAdmin: false
-  //   }
-  // };
-
   componentDidMount() {
     this.props.getData();
-
-    // if (localStorage.hasOwnProperty("user")) {
-    //   const user = JSON.parse(localStorage.getItem("user"));
-    //   this.setState({ loggedUser: user });
-    // }
   }
 
   deleteTicket = id => {
@@ -34,10 +20,12 @@ class TicketList extends React.Component {
     this.props.assignTicket(id, ticket);
   };
 
+  user = JSON.parse(localStorage.getItem("user"));
+
   render() {
-    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(this.props);
     return (
-      <Dashboard user={user}>
+      <Dashboard user={this.user}>
         <ItemDiv>
           {this.props.tickets.map(ticket => (
             <TicketItem
@@ -53,7 +41,7 @@ class TicketList extends React.Component {
               description={ticket.description}
               deleteTicket={this.deleteTicket}
               assignTicket={this.assignTicket}
-              userRole={user.isAdmin}
+              userRole={this.user.isAdmin}
             />
           ))}
         </ItemDiv>
@@ -70,5 +58,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData, deleteTicket, assignTicket, getUser }
+  { getData, deleteTicket, assignTicket }
 )(TicketList);

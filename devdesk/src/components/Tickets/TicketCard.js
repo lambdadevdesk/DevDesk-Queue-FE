@@ -19,6 +19,8 @@ const TicketCard = props => {
     background: lemonchiffon;
     display: flex;
   `;
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <Dashboard>
       <CardDiv>
@@ -29,7 +31,7 @@ const TicketCard = props => {
         </div>
         <div className="ticket-content">
           <div>
-            {props.userRole ? (
+            {user.isAdmin ? (
               <button onClick={() => props.resolveTicket(ticket.id, ticket)}>
                 {ticket.resolved ? "Reopen" : "Resolve"}
               </button>
@@ -49,8 +51,7 @@ const TicketCard = props => {
 
 const mapStateToProps = state => {
   return {
-    tickets: state.tickets,
-    userRole: state.user.isAdmin
+    tickets: state.tickets
   };
 };
 

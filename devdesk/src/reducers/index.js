@@ -16,8 +16,6 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   LOGIN_RESOLVED,
-  FETCH_USER_SUCCESS,
-  FETCH_USER_FAIL,
   RESOLVE_TICKET_START,
   RESOLVE_TICKET_SUCCESS,
   RESOLVE_TICKET_FAIL,
@@ -26,7 +24,9 @@ import {
   ASSIGN_TICKET_FAIL,
   SIGNUP_START,
   SIGNUP_SUCCESS,
-  SIGNUP_FAIL
+  SIGNUP_FAIL,
+  FETCH_TICKET_SUCCESS,
+  FETCH_TICKET_FAIL
 } from "../actions";
 
 const initialState = {
@@ -44,14 +44,14 @@ const initialState = {
   error: null,
   credentials: [],
 
-  user: {
-    id: "",
-    cohort: null,
-    email: "",
-    role: "",
-    username: ""
-  },
-
+  // user: {
+  //   id: "",
+  //   cohort: null,
+  //   email: "",
+  //   role: "",
+  //   username: ""
+  // },
+  ownedTickets: [],
   tickets: [],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   isAdmin: false
@@ -238,18 +238,16 @@ const reducers = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
-    case FETCH_USER_SUCCESS:
-      const loggedUser = action.payload.find(users => users.id === action.id);
+    case FETCH_TICKET_SUCCESS:
       return {
         ...state,
-        user: loggedUser
+        ownedTickets: action.payload
       };
-    case FETCH_USER_FAIL:
+    case FETCH_TICKET_FAIL:
       return {
         ...state,
         error: action.payload
       };
-
     default:
       return state;
   }

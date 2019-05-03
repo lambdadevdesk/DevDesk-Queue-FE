@@ -119,23 +119,6 @@ export const deleteTicket = id => dispatch => {
     });
 };
 
-// Action to get currently logged in user
-
-export const FETCH_USER_START = "FETCH_USER_START";
-export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
-export const FETCH_USER_FAIL = "FETCH_USER_FAIL";
-export const getUser = id => dispatch => {
-  dispatch({ type: FETCH_USER_START });
-  axiosAuth()
-    .get(`https://devdeskqueue-be.herokuapp.com/api/users`)
-    .then(res => {
-      dispatch({ type: FETCH_USER_SUCCESS, payload: res.data, id });
-    })
-    .catch(err => {
-      dispatch({ type: FETCH_USER_FAIL, payload: err });
-    });
-};
-
 // Action for admins to resolve & reopen tickets
 
 export const RESOLVE_TICKET_START = "RESOLVE_TICKET_START";

@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 import { DashNav } from "../../helpers";
 import ProfileCard from "../ProfileCard";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 const DashboardMenu = props => {
   return (
     <DashNav className="dash-panel">
-      <ProfileCard user={props.user} />
+      <ProfileCard />
       <ul>
         <li>
           <Link to="/new-ticket">Create Ticket</Link>
         </li>
         <li>
-          {props.user.isAdmin ? (
+          {user.isAdmin ? (
             <Link to="/my-tickets">Claimed Tickets</Link>
           ) : (
             <Link to="/my-tickets">My Tickets</Link>

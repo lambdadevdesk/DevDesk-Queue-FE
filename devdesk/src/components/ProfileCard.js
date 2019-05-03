@@ -8,15 +8,17 @@ const ProfileCard = props => {
     margin: 2rem 0;
   `;
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <ProfileDiv className="profile-panel">
       <div className="profile-header">
         <img src="" alt="" />
-        <h1>{props.user.firstName}</h1>
+        <h1>{user.firstName}</h1>
       </div>
       <div className="profile-content">
-        <p>{props.user.lastName}</p>
-        <p>{props.user.email}</p>
+        <p>{user.lastName}</p>
+        <p>{user.email}</p>
       </div>
     </ProfileDiv>
   );
