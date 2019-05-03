@@ -112,6 +112,23 @@ export const LoginForm = styled.form`
     margin-top: 1rem;
     text-align: center;
   }
+
+  .error {
+    background: #fff6f6;
+    border-radius: 3px;
+    padding: 0.5rem 0;
+    color: #9f3a38;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .success {
+    background: #fcfff5;
+    border-radius: 3px;
+    padding: 0.5rem 0;
+    color: #2c662d;
+    text-align: center;
+    margin-top: 1rem;
+  }
 `;
 
 export const LoginHeader = styled.div`

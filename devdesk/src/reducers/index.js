@@ -24,6 +24,7 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  SIGNUP_RESOLVED,
   FETCH_TICKET_SUCCESS,
   FETCH_TICKET_FAIL
 } from "../actions";
@@ -145,20 +146,25 @@ const reducers = (state = initialState, action) => {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
-        user: action.user
+        user: action.user,
+        status: action.status,
+        error: action.message
       };
     }
     case LOGIN_RESOLVED: {
       return {
         ...state,
         isLoggingIn: false,
-        status: ""
+        status: null,
+        error: null
       };
     }
     case LOGIN_FAIL: {
       return {
         ...state,
-        isLoggingIn: false
+        isLoggingIn: false,
+        error: action.payload,
+        status: action.status
       };
     }
     case LOGOUT_SUCCESS:
@@ -176,7 +182,17 @@ const reducers = (state = initialState, action) => {
       return {
         ...state,
         isSigningUp: false,
-        user: action.user
+        error: action.payload,
+        status: action.status
+        // user: action.user
+      };
+    }
+    case SIGNUP_RESOLVED: {
+      return {
+        ...state,
+        isSigningUp: false,
+        error: null,
+        status: null
       };
     }
     case SIGNUP_FAIL: {
