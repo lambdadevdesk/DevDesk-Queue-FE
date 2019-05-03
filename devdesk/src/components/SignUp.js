@@ -31,20 +31,22 @@ class SignUp extends Component {
     this.props.signup(this.state.user).then(() => {
       setTimeout(() => {
         this.props.history.push("/login");
-      }, 2000);
+      }, 1500);
     });
-    this.setState({
-      user: {
-        ...this.state.user,
-        firstName: "",
-        lastName: "",
-        username: "",
-        password: "",
-        email: "",
-        role: "Student",
-        cohort: ""
-      }
-    });
+    setTimeout(() => {
+      this.setState({
+        user: {
+          ...this.state.user,
+          firstName: "",
+          lastName: "",
+          username: "",
+          password: "",
+          email: "",
+          isAdmin: false,
+          cohort: ""
+        }
+      });
+    }, 1500);
   };
   render() {
     return (
@@ -83,7 +85,7 @@ class SignUp extends Component {
           />
           <input
             onChange={this.handleChange}
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             value={this.state.user.password}
@@ -91,7 +93,7 @@ class SignUp extends Component {
           />
           <input
             onChange={this.handleChange}
-            type="text"
+            type="email"
             name="email"
             placeholder="Email"
             value={this.state.user.email}
@@ -106,6 +108,9 @@ class SignUp extends Component {
             required
           />
           <button type="submit">Sign Up!</button>
+          <div className={this.props.status}>
+            <p>{this.props.error}</p>
+          </div>
           <div className="extra">
             <p>
               Already have an Account? <Link to="/login">Log in!</Link>
@@ -119,7 +124,8 @@ class SignUp extends Component {
 
 const mapStateToProps = state => {
   return {
-    isSigningUp: state.isSigningUp
+    status: state.status,
+    error: state.error
   };
 };
 export default connect(

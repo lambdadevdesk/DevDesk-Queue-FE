@@ -22,15 +22,17 @@ class Login extends Component {
     this.props.login(this.state.credentials).then(() => {
       setTimeout(() => {
         this.props.history.push("/tickets");
-      }, 2000);
+      }, 1485);
     });
-    this.setState({
-      credentials: {
-        ...this.state.credentials,
-        username: "",
-        password: ""
-      }
-    });
+    setTimeout(() => {
+      this.setState({
+        credentials: {
+          ...this.state.credentials,
+          username: "",
+          password: ""
+        }
+      });
+    }, 1485);
   };
 
   render() {
@@ -61,6 +63,9 @@ class Login extends Component {
             required
           />
           <button type="submit">Login</button>
+          <div className={this.props.status}>
+            <p>{this.props.error}</p>
+          </div>
           <div className="extra">
             <p>
               Don't have an Account? <Link to="/sign-up">Sign up!</Link>
@@ -74,7 +79,9 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggingIn: state.isLoggingIn
+    isLoggingIn: state.isLoggingIn,
+    error: state.error,
+    status: state.status
   };
 };
 export default connect(
