@@ -18,6 +18,7 @@ export const login = credentials => dispatch => {
     .post("https://devdeskqueue-be.herokuapp.com/api/login", credentials)
     .then(res => {
       if (res.status === 200) {
+        console.log(res.data.user);
         setTimeout(
           () =>
             dispatch({

@@ -38,6 +38,7 @@ class MyTickets extends Component {
     user.isAdmin
       ? this.props.getTickets("admin", user.user_id)
       : this.props.getTickets("student", user.user_id);
+    console.log(user.user_id);
   }
 }
 
