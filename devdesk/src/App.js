@@ -10,7 +10,7 @@ import TicketForm from "./components/Tickets/TicketForm";
 import TicketCard from "./components/Tickets/TicketCard";
 import HomePage from "./components/HomePage";
 import Edit from "./components/Tickets/Edit";
-import MyTickets from "./components/MyTickets";
+import MyTickets from "./components/Tickets/MyTickets";
 
 function App() {
   return (

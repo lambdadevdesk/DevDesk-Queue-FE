@@ -141,7 +141,6 @@ export const resolveTicket = (id, updatedTicket) => dispatch => {
 };
 
 export const ASSIGN_TICKET_START = "ASSIGN_TICKET_START";
-export const ASSIGN_TICKET_SUCCESS = "ASSIGN_TICKET_SUCCESS";
 export const ASSIGN_TICKET_FAIL = "ASSIGN_TICKET_FAIL";
 export const assignTicket = (id, updatedTicket) => dispatch => {
   dispatch({ type: ASSIGN_TICKET_START, id });
@@ -150,9 +149,7 @@ export const assignTicket = (id, updatedTicket) => dispatch => {
       `https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`,
       updatedTicket
     )
-    .then(res => {
-      dispatch({ type: ASSIGN_TICKET_SUCCESS, payload: res.data, id });
-    })
+    .then(res => {})
     .catch(err => {
       dispatch({ type: ASSIGN_TICKET_FAIL, payload: err });
     });
@@ -184,6 +181,7 @@ export const getTickets = (role, id) => dispatch => {
   axiosAuth()
     .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/${role}/${id}`)
     .then(res => {
+      console.log(res);
       dispatch({ type: FETCH_TICKET_SUCCESS, payload: res.data });
     })
     .catch(err => {

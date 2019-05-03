@@ -25,6 +25,7 @@ export const setToken = store => next => action => {
       return;
     case LOGOUT_SUCCESS:
       localStorage.removeItem("userToken");
+      localStorage.removeItem("user");
       localStorage.setItem("isLoggedIn", false);
       next(action);
       return;

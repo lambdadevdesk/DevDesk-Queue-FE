@@ -4,17 +4,13 @@ import { connect } from "react-redux";
 import { ItemDiv } from "../../helpers";
 
 import TicketItem from "./TicketItem";
-import { getData, deleteTicket, assignTicket } from "../../actions";
+import { getData, assignTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketList extends React.Component {
   componentDidMount() {
     this.props.getData();
   }
-
-  deleteTicket = id => {
-    this.props.deleteTicket(id);
-  };
 
   assignTicket = (id, ticket) => {
     this.props.assignTicket(id, ticket);
@@ -38,7 +34,6 @@ class TicketList extends React.Component {
               resolved={ticket.resolved}
               assignedUser={ticket.assigned_user}
               description={ticket.description}
-              deleteTicket={this.deleteTicket}
               assignTicket={this.assignTicket}
               userRole={this.user.isAdmin}
             />
@@ -57,5 +52,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getData, deleteTicket, assignTicket }
+  { getData, assignTicket }
 )(TicketList);

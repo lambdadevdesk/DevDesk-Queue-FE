@@ -1,0 +1,71 @@
+import React from "react";
+import { connect } from "react-redux";
+
+import { deleteTicket } from "../../actions";
+import Dashboard from "../Dashboard/Dashboard";
+import { ItemDiv } from "../../helpers";
+import TicketItem from "./TicketItem";
+
+const test = props => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const ownedTickets = props.tickets.filter(
+    ticket => ticket.user_id === user.user_id
+  );
+  const claimedTickets = props.tickets.filter(
+    ticket => ticket.assigned_user === user.user_id
+  );
+  if (user.isAdmin) {
+    return (
+      <Dashboard>
+        <ItemDiv>
+          {claimedTickets.map(ticket => (
+            <TicketItem
+              key={ticket.id}
+              id={ticket.id}
+              ticket={ticket}
+              title={ticket.title}
+              category={ticket.category}
+              createdBy={ticket.user_id}
+              assigned={ticket.assigned}
+              resolved={ticket.resolved}
+              assignedUser={ticket.assigned_user}
+              description={ticket.description}
+            />
+          ))}
+        </ItemDiv>
+      </Dashboard>
+    );
+  } else {
+    return (
+      <Dashboard>
+        <ItemDiv>
+          {ownedTickets.map(ticket => (
+            <TicketItem
+              key={ticket.id}
+              id={ticket.id}
+              ticket={ticket}
+              title={ticket.title}
+              category={ticket.category}
+              createdBy={ticket.user_id}
+              assigned={ticket.assigned}
+              resolved={ticket.resolved}
+              assignedUser={ticket.assigned_user}
+              description={ticket.description}
+            />
+          ))}
+        </ItemDiv>
+      </Dashboard>
+    );
+  }
+};
+
+const mapStateToProps = state => {
+  return {
+    tickets: state.tickets
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { deleteTicket }
+)(test);

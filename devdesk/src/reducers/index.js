@@ -20,7 +20,6 @@ import {
   RESOLVE_TICKET_SUCCESS,
   RESOLVE_TICKET_FAIL,
   ASSIGN_TICKET_START,
-  // ASSIGN_TICKET_SUCCESS,
   ASSIGN_TICKET_FAIL,
   SIGNUP_START,
   SIGNUP_SUCCESS,
@@ -223,11 +222,6 @@ const reducers = (state = initialState, action) => {
         ...state,
         tickets: assignedTicket
       };
-    // case ASSIGN_TICKET_SUCCESS:
-    //   return {
-    //     ...state
-    //     // tickets: [...state.tickets, action.payload]
-    //   };
     case ASSIGN_TICKET_FAIL:
       return {
         ...state,

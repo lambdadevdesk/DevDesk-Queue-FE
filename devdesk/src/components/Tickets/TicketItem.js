@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { deleteTicket } from "../../actions";
 
 const TicketItem = props => {
   return (
@@ -12,7 +15,6 @@ const TicketItem = props => {
         <Link to={`/tickets/${props.id}`}>
           <div className="ticket-info">
             <h1 className="ticket-title">{props.title}</h1>
-
             <p>{props.description}</p>
           </div>
         </Link>
@@ -47,4 +49,11 @@ const TicketItem = props => {
   );
 };
 
-export default TicketItem;
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(
+  mapStateToProps,
+  { deleteTicket }
+)(TicketItem);
