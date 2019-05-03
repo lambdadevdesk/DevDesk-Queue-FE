@@ -212,7 +212,7 @@ const reducers = (state = initialState, action) => {
       const assignedTicket = state.tickets.map(ticket => {
         if (Number(ticket.id) === Number(action.id)) {
           ticket.assigned = !ticket.assigned;
-          ticket.assigned_user = state.user.username;
+          ticket.assigned_user = state.user.user_id;
           if (!ticket.assigned) {
             ticket.assigned_user = "";
           }
