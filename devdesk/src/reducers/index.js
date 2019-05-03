@@ -20,7 +20,7 @@ import {
   RESOLVE_TICKET_SUCCESS,
   RESOLVE_TICKET_FAIL,
   ASSIGN_TICKET_START,
-  ASSIGN_TICKET_SUCCESS,
+  // ASSIGN_TICKET_SUCCESS,
   ASSIGN_TICKET_FAIL,
   SIGNUP_START,
   SIGNUP_SUCCESS,
@@ -43,13 +43,14 @@ const initialState = {
   error: null,
   credentials: [],
 
-  // user: {
-  //   id: "",
-  //   cohort: null,
-  //   email: "",
-  //   role: "",
-  //   username: ""
-  // },
+  user: {
+    id: "",
+    cohort: null,
+    email: "",
+    role: "",
+    username: ""
+  },
+
   ownedTickets: [],
   tickets: [],
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
@@ -209,17 +210,12 @@ const reducers = (state = initialState, action) => {
       };
     case ASSIGN_TICKET_START:
       const assignedTicket = state.tickets.map(ticket => {
-        if (
-          ticket.assigned_user === 0 &&
-          Number(ticket.id) === Number(action.id)
-        ) {
+        if (Number(ticket.id) === Number(action.id)) {
           ticket.assigned = !ticket.assigned;
-          ticket.assigned_user = state.user.id;
-        } else if (
-          ticket.assigned_user !== 0 &&
-          Number(ticket.id) === Number(action.id)
-        ) {
-          ticket.assigned_user = 0;
+          ticket.assigned_user = state.user.username;
+          if (!ticket.assigned) {
+            ticket.assigned_user = "";
+          }
         }
         return ticket;
       });
@@ -227,11 +223,11 @@ const reducers = (state = initialState, action) => {
         ...state,
         tickets: assignedTicket
       };
-    case ASSIGN_TICKET_SUCCESS:
-      return {
-        ...state
-        // tickets: [...state.tickets, action.payload]
-      };
+    // case ASSIGN_TICKET_SUCCESS:
+    //   return {
+    //     ...state
+    //     // tickets: [...state.tickets, action.payload]
+    //   };
     case ASSIGN_TICKET_FAIL:
       return {
         ...state,

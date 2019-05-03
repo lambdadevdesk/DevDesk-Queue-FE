@@ -23,7 +23,6 @@ class TicketList extends React.Component {
   user = JSON.parse(localStorage.getItem("user"));
 
   render() {
-    console.log(this.props);
     return (
       <Dashboard user={this.user}>
         <ItemDiv>
