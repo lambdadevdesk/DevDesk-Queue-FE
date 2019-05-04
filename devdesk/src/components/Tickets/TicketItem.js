@@ -33,19 +33,20 @@ const TicketItem = props => {
               <button
                 onClick={() => props.assignTicket(props.id, props.ticket)}
               >
-                Assign to List
+                Unclaim
               </button>
             ) : (
               <button
                 onClick={() => props.assignTicket(props.id, props.ticket)}
               >
-                Claim Ticket
+                Claim
               </button>
             )
           ) : null}
-          <button onClick={() => props.deleteTicket(props.id)}>✘</button>
+          <button onClick={() => props.deleteTicket(props.id)}>Delete</button>
         </div>
         <div className="meta-tags">
+<<<<<<< HEAD
           <div>
             <p> {props.assignedUser}</p>
           </div>
@@ -60,6 +61,11 @@ const TicketItem = props => {
           <div>
             <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
           </div>
+=======
+          <p>Posted by: {props.createdBy}</p>
+          <p>Topic: {props.category}</p>
+          <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
+>>>>>>> fbc7c50c0f45bc41b6641077f7998b34d5ffafe9
         </div>
       </div>
     </div>

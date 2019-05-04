@@ -55,7 +55,7 @@ export const MenuH1 = styled.h1`
 //Styles for the Submit a Ticket View
 
 export const TicketH1 = styled.h1`
-  color: #bb1333;
+  color: #fff;
   text-align: center;
   font-size: 2rem;
   margin: 1rem 0;
@@ -304,18 +304,17 @@ export const ItemDiv = styled.div`
       }
       .ticket-info {
         display: flex;
-        flex-direction: column;
-        width: 100%;
 
-        .ticket-title {
-          display: flex;
-          font-size: 1.6rem;
-          justify-content: center;
+        margin-left: 15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        h1 {
+          font-weight: bold;
           margin-bottom: 10px;
         }
-        .ticket-description {
-          word-break: break-word;
-          font-size: 1rem;
+        p {
+          line-height: 18px;
         }
       }
     }
@@ -326,33 +325,37 @@ export const ItemDiv = styled.div`
       border-top: 1px solid gray;
 
       .buttons {
+        margin-top: 10px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        width: 20%;
-        border-right: 1px solid gray;
-        display: flex;
+
+        width: 70px;
         button {
-          margin-top: 5px;
-          padding: 0;
-          width: 50px;
+          padding: 0.5rem 0.5rem;
+          background: #bb1333;
+          color: #fff;
+          font-size: 1rem;
+          cursor: pointer;
+          outline: none;
+          border: none;
+          border-radius: 3px;
+          margin-bottom: 10px;
+          &:hover {
+            color: #bb1333;
+            background: #efeff3;
+          }
         }
       }
       .meta-tags {
         display: flex;
+        flex-direction: column;
         width: 80%;
-        justify-content: center;
-        align-content: center;
 
-        div {
-          border-right: 1px solid gray;
-          display: flex;
-          flex-direction: column;
-
-          p {
-            /* padding: 0 2rem; */
-            text-align: center;
-          }
+        margin-left: 10px;
+        justify-content: space-evenly;
+        p {
+          margin-top: 0px;
+          text-align: center;
         }
       }
     }
@@ -366,6 +369,61 @@ export const ItemDiv = styled.div`
     color: #000;
     :hover {
       color: #08addd;
+    }
+  }
+`;
+
+//
+// Card div for ticket/${id}
+//
+
+export const CardDiv = styled.div`
+  margin: 0 auto;
+  width: 75%;
+  background: white;
+  display: flex;
+  padding: 1.2rem;
+  margin: 1rem auto;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  box-shadow: 2px 2px 19px -4px rgba(85, 89, 109, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  background: white;
+  .meta-data {
+    margin-bottom: 5px;
+    h2 {
+      margin-bottom: 5px;
+    }
+  }
+  .ticket-content {
+    h2 {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    p {
+      margin-top: 10px;
+      line-height: 18px;
+    }
+    .button-div {
+      button {
+        padding: 0.5rem 0.5rem;
+        background: #bb1333;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+
+        &:hover {
+          color: #bb1333;
+          background: #efeff3;
+        }
+      }
     }
   }
 `;
