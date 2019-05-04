@@ -39,9 +39,8 @@ const TicketItem = props => {
           <button onClick={() => props.deleteTicket(props.id)}>✘</button>
         </div>
         <div className="meta-tags">
-          <p> {props.assignedUser}</p>
           <p> {props.createdBy}</p>
-          <p>{props.category}</p>
+          <p>Topic: {props.category}</p>
           <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
         </div>
       </div>

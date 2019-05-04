@@ -291,6 +291,7 @@ export const ItemDiv = styled.div`
       }
       .ticket-info {
         display: flex;
+        margin-left: 15px;
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
@@ -304,20 +305,21 @@ export const ItemDiv = styled.div`
         flex-direction: column;
         width: 60px;
         button {
-          margin-top: 5px;
+          margin-top: 10px;
           padding: 0;
-          /* width: 20%; */
         }
       }
       .meta-tags {
         display: flex;
         width: 80%;
+        margin-left: 10px;
         justify-content: space-between;
       }
     }
 
     p {
       word-wrap: break-word;
+      margin-top: 10px;
     }
   }
   a {
@@ -327,4 +329,25 @@ export const ItemDiv = styled.div`
       color: #08addd;
     }
   }
+`;
+
+//
+// Card div for ticket/${id}
+//
+
+export const CardDiv = styled.div`
+margin: 0 auto;
+width: 75%;
+background: white;
+display: flex;
+padding: 1.2rem;
+margin: 1rem auto;
+border: 1px solid #d4d4d4;
+border-radius: 4px;
+box-shadow: 2px 2px 19px -4px rgba(85, 89, 109, 1);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-content: space-between;
+background: white;
 `;

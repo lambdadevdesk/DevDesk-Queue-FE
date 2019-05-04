@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components";
+import { CardDiv } from "../../helpers";
 
 import { resolveTicket } from "../../actions";
 
@@ -13,12 +13,6 @@ const TicketCard = props => {
     ticket => `${ticket.id}` === props.match.params.id
   );
 
-  const CardDiv = styled.div`
-    margin: 0 auto;
-    width: 75%;
-    background: lemonchiffon;
-    display: flex;
-  `;
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (
