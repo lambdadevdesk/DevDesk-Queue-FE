@@ -267,7 +267,7 @@ export const ItemDiv = styled.div`
   width: 100%;
 
   .ticket-item {
-    padding: 1.2rem;
+    /* padding: 1.2rem; */
     margin: 1rem 1rem 0 1rem;
     border: 1px solid #d4d4d4;
     border-radius: 4px;
@@ -282,37 +282,78 @@ export const ItemDiv = styled.div`
     }
     .top-section {
       display: flex;
-      padding-bottom: 1rem;
+      padding-bottom: 6px;
 
       .status {
         display: flex;
         flex-direction: column;
         width: 20%;
+        margin-right: 5px;
+        .status-number {
+          margin: 5px 0;
+          text-align: center;
+        }
+        .status-resolved {
+          margin: 0;
+          padding: 3px 0;
+          text-align: center;
+          border-radius: 0 2px 2px 0;
+          color: #fff;
+          margin-top: 7px;
+        }
       }
       .ticket-info {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
         width: 100%;
+
+        .ticket-title {
+          display: flex;
+          font-size: 1.6rem;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+        .ticket-description {
+          word-break: break-word;
+          font-size: 1rem;
+        }
       }
     }
 
     .bottom-section {
       display: flex;
+      width: 100%;
+      border-top: 1px solid gray;
+
       .buttons {
         display: flex;
         flex-direction: column;
-        width: 60px;
+        justify-content: center;
+        width: 20%;
+        border-right: 1px solid gray;
+        display: flex;
         button {
           margin-top: 5px;
           padding: 0;
-          /* width: 20%; */
+          width: 50px;
         }
       }
       .meta-tags {
         display: flex;
         width: 80%;
-        justify-content: space-between;
+        justify-content: center;
+        align-content: center;
+
+        div {
+          border-right: 1px solid gray;
+          display: flex;
+          flex-direction: column;
+
+          p {
+            /* padding: 0 2rem; */
+            text-align: center;
+          }
+        }
       }
     }
 

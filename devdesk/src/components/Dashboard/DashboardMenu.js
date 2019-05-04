@@ -11,19 +11,15 @@ const DashboardMenu = props => {
     <DashNav className="dash-panel">
       <ProfileCard />
       <ul>
-        <li>
-          <Link to="/new-ticket">Create Ticket</Link>
-        </li>
-        <li>
-          {user.isAdmin ? (
-            <Link to="/my-tickets">Claimed Tickets</Link>
-          ) : (
-            <Link to="/my-tickets">My Tickets</Link>
-          )}
-        </li>
-        <li>
-          <Link to="/tickets">Opened Tickets</Link>
-        </li>
+        <Link to="/new-ticket">
+          <li>Create Ticket</li>
+        </Link>
+        <Link to="/my-tickets">
+          {user.isAdmin ? <li>Claimed Tickets</li> : <li>My Tickets</li>}
+        </Link>
+        <Link to="/tickets">
+          <li>Opened Tickets</li>
+        </Link>
       </ul>
     </DashNav>
   );
