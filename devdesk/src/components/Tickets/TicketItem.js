@@ -46,26 +46,9 @@ const TicketItem = props => {
           <button onClick={() => props.deleteTicket(props.id)}>Delete</button>
         </div>
         <div className="meta-tags">
-<<<<<<< HEAD
-          <div>
-            <p> {props.assignedUser}</p>
-          </div>
-          <div>
-            <p>Created by:</p>
-            <p> {props.createdBy}</p>
-          </div>
-          <div>
-            <p>Category:</p>
-            <p>{props.category}</p>
-          </div>
-          <div>
-            <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
-          </div>
-=======
           <p>Posted by: {props.createdBy}</p>
           <p>Topic: {props.category}</p>
           <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
->>>>>>> fbc7c50c0f45bc41b6641077f7998b34d5ffafe9
         </div>
       </div>
     </div>

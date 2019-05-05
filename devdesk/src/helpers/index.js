@@ -306,15 +306,19 @@ export const ItemDiv = styled.div`
         display: flex;
 
         margin-left: 15px;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         width: 100%;
         h1 {
           font-weight: bold;
           margin-bottom: 10px;
+          text-align: center;
+          font-size: 1.5rem;
         }
         p {
           line-height: 18px;
+          word-break: break-all;
+          font-size: 14px;
         }
       }
     }
