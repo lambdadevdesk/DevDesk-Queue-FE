@@ -267,7 +267,7 @@ export const ItemDiv = styled.div`
   width: 100%;
 
   .ticket-item {
-    padding: 1.2rem;
+    /* padding: 1.2rem; */
     margin: 1rem 1rem 0 1rem;
     border: 1px solid #d4d4d4;
     border-radius: 4px;
@@ -282,35 +282,57 @@ export const ItemDiv = styled.div`
     }
     .top-section {
       display: flex;
-      padding-bottom: 1rem;
+      padding-bottom: 6px;
 
       .status {
         display: flex;
         flex-direction: column;
         width: 20%;
+        margin-right: 5px;
+        .status-number {
+          margin: 5px 0;
+          text-align: center;
+        }
+        .status-resolved {
+          margin: 0;
+          padding: 3px 0;
+          text-align: center;
+          border-radius: 0 2px 2px 0;
+          color: #fff;
+          margin-top: 7px;
+        }
       }
       .ticket-info {
         display: flex;
+
         margin-left: 15px;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         width: 100%;
         h1 {
           font-weight: bold;
           margin-bottom: 10px;
+          text-align: center;
+          font-size: 1.5rem;
         }
         p {
           line-height: 18px;
+          word-break: break-all;
+          font-size: 14px;
         }
       }
     }
 
     .bottom-section {
       display: flex;
+      width: 100%;
+      border-top: 1px solid gray;
+
       .buttons {
         margin-top: 10px;
         display: flex;
         flex-direction: column;
+
         width: 70px;
         button {
           padding: 0.5rem 0.5rem;
@@ -332,6 +354,7 @@ export const ItemDiv = styled.div`
         display: flex;
         flex-direction: column;
         width: 80%;
+
         margin-left: 10px;
         justify-content: space-evenly;
         p {
@@ -390,7 +413,6 @@ export const CardDiv = styled.div`
       line-height: 18px;
     }
     .button-div {
-     
       button {
         padding: 0.5rem 0.5rem;
         background: #bb1333;
@@ -400,7 +422,7 @@ export const CardDiv = styled.div`
         outline: none;
         border: none;
         border-radius: 3px;
-    
+
         &:hover {
           color: #bb1333;
           background: #efeff3;

@@ -9,15 +9,22 @@ const TicketItem = props => {
     <div className="ticket-item">
       <div className="top-section">
         <div className="status">
-          <p>#{props.id}</p>
-          <p>{props.resolved ? "Closed" : "Open"}</p>
+          <p className="status-number">#{props.id}</p>
+          <p
+            className="status-resolved"
+            style={
+              props.resolved ? { background: `red` } : { background: `green` }
+            }
+          >
+            {props.resolved ? "Closed" : "Open"}
+          </p>
         </div>
-        <Link to={`/tickets/${props.id}`}>
-          <div className="ticket-info">
+        <div className="ticket-info">
+          <Link to={`/tickets/${props.id}`}>
             <h1 className="ticket-title">{props.title}</h1>
-            <p>{props.description}</p>
-          </div>
-        </Link>
+          </Link>
+          <p className="ticket-description">{props.description}</p>
+        </div>
       </div>
       <div className="bottom-section">
         <div className="buttons">
