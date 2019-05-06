@@ -4,6 +4,14 @@ import { connect } from "react-redux";
 
 import { deleteTicket } from "../../actions";
 
+const excerptHelper = text => {
+  if (text.length > 100) {
+    return text.slice(0, 100).concat(" . . .");
+  } else {
+    return text;
+  }
+};
+
 const TicketItem = props => {
   return (
     <div className="ticket-item">
@@ -23,32 +31,45 @@ const TicketItem = props => {
           <Link to={`/tickets/${props.id}`}>
             <h1 className="ticket-title">{props.title}</h1>
           </Link>
-          <p className="ticket-description">{props.description}</p>
+          <p className="ticket-description">
+            {excerptHelper(props.description)}
+          </p>
+        </div>
+        <div className="delete-item">
+          <i
+            onClick={() => props.deleteTicket(props.id)}
+            className="fas fa-trash"
+          />
         </div>
       </div>
       <div className="bottom-section">
-        <div className="buttons">
-          {props.userRole ? (
-            props.assigned ? (
-              <button
-                onClick={() => props.assignTicket(props.id, props.ticket)}
-              >
-                Unclaim
-              </button>
-            ) : (
-              <button
-                onClick={() => props.assignTicket(props.id, props.ticket)}
-              >
-                Claim
-              </button>
-            )
-          ) : null}
-          <button onClick={() => props.deleteTicket(props.id)}>Delete</button>
-        </div>
         <div className="meta-tags">
-          <p>Posted by: {props.createdBy}</p>
-          <p>Topic: {props.category}</p>
-          <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
+          <div className="buttons">
+            {props.userRole ? (
+              props.assigned ? (
+                <button
+                  onClick={() => props.assignTicket(props.id, props.ticket)}
+                >
+                  Unclaim
+                </button>
+              ) : (
+                <button
+                  onClick={() => props.assignTicket(props.id, props.ticket)}
+                >
+                  Claim
+                </button>
+              )
+            ) : null}
+          </div>
+          <div>
+            <p>Posted by: {props.createdBy}</p>
+          </div>
+          <div>
+            <p>Topic: {props.category}</p>
+          </div>
+          <div>
+            <p>{props.assigned ? "Assigned" : "Not Assigned"}</p>
+          </div>
         </div>
       </div>
     </div>

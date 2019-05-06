@@ -17,7 +17,7 @@ const DashboardMenu = props => {
           {props.user.isAdmin ? <li>Claimed Tickets</li> : <li>My Tickets</li>}
         </Link>
         <Link to="/tickets">
-          <li>Opened Tickets</li>
+          <li>All Tickets</li>
         </Link>
       </ul>
     </DashNav>
