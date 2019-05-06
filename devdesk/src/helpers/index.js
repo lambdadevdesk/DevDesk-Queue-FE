@@ -282,6 +282,7 @@ export const ItemDiv = styled.div`
     .top-section {
       display: flex;
       padding-bottom: 6px;
+      align-items: baseline;
 
       .status {
         display: flex;
@@ -307,17 +308,27 @@ export const ItemDiv = styled.div`
         margin-left: 15px;
         flex-direction: column;
         flex-wrap: wrap;
-        width: 100%;
+        width: 70%;
+
         h1 {
           font-weight: bold;
           margin-bottom: 10px;
           text-align: center;
-          font-size: 1.5rem;
+          font-size: 1.3rem;
         }
         p {
           line-height: 18px;
           word-break: break-all;
           font-size: 14px;
+        }
+      }
+      .delete-item {
+        width: 10%;
+        padding: 13px;
+        text-align: center;
+
+        i {
+          cursor: pointer;
         }
       }
     }
@@ -326,13 +337,15 @@ export const ItemDiv = styled.div`
       display: flex;
       width: 100%;
       border-top: 1px solid gray;
+      align-content: center;
+      padding: 1rem 0;
 
-      .buttons {
-        margin-top: 10px;
+      .meta-tags {
         display: flex;
-        flex-direction: column;
+        width: 100%;
 
-        width: 70px;
+        justify-content: space-evenly;
+        align-items: baseline;
         button {
           padding: 0.5rem 0.5rem;
           background: #bb1333;
@@ -342,29 +355,12 @@ export const ItemDiv = styled.div`
           outline: none;
           border: none;
           border-radius: 3px;
-          margin-bottom: 10px;
           &:hover {
             color: #bb1333;
             background: #efeff3;
           }
         }
       }
-      .meta-tags {
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-
-        margin-left: 10px;
-        justify-content: space-evenly;
-        p {
-          margin-top: 0px;
-          text-align: center;
-        }
-      }
-    }
-
-    p {
-      word-wrap: break-word;
     }
   }
   a {
