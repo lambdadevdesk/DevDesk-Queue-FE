@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { DashNav } from "../../helpers";
-import ProfileCard from "../ProfileCard";
-
-// const user = JSON.parse(localStorage.getItem("user"));
+import ProfileCard from "./ProfileCard";
 
 const DashboardMenu = props => {
   return (

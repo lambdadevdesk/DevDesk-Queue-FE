@@ -430,3 +430,10 @@ export const CardDiv = styled.div`
     }
   }
 `;
+
+// Styles for the Profile Card
+export const ProfileDiv = styled.div`
+  color: black;
+  margin: 2rem 0;
+  line-height: 1.5;
+`;

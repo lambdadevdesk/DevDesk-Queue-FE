@@ -18,7 +18,6 @@ export const login = credentials => dispatch => {
     .post("https://devdeskqueue-be.herokuapp.com/api/login", credentials)
     .then(res => {
       if (res.status === 200) {
-        console.log(res.data);
         dispatch({
           type: LOGIN_SUCCESS,
           user: res.data.user,
@@ -157,9 +156,7 @@ export const assignTicket = (id, updatedTicket) => dispatch => {
     });
 };
 
-//
-// Sign Up Actions
-//
+// Action to create new student users
 
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -171,7 +168,6 @@ export const signup = user => dispatch => {
   return axios
     .post("https://devdeskqueue-be.herokuapp.com/api/register", user)
     .then(res => {
-      console.log(res);
       dispatch({
         type: SIGNUP_SUCCESS,
         payload: res.data.msg,
@@ -181,19 +177,5 @@ export const signup = user => dispatch => {
     })
     .catch(err => {
       dispatch({ type: SIGNUP_FAIL, payload: err.response });
-    });
-};
-
-export const FETCH_TICKET_SUCCESS = "FETCH_TICKET_SUCCESS";
-export const FETCH_TICKET_FAIL = "FETCH_TICKET_FAIL";
-export const getTickets = (role, id) => dispatch => {
-  axiosAuth()
-    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/${role}/${id}`)
-    .then(res => {
-      console.log(res);
-      dispatch({ type: FETCH_TICKET_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: FETCH_DATA_FAIL, payload: err });
     });
 };

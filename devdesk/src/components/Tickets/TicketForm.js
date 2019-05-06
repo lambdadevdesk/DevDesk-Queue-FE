@@ -6,7 +6,6 @@ import { addTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketForm extends Component {
-  // user = JSON.parse(localStorage.getItem("user"));
   state = {
     ticket: {
       title: "",

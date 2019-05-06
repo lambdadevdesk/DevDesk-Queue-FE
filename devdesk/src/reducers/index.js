@@ -24,9 +24,7 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
-  SIGNUP_RESOLVED,
-  FETCH_TICKET_SUCCESS,
-  FETCH_TICKET_FAIL
+  SIGNUP_RESOLVED
 } from "../actions";
 
 const initialState = {
@@ -42,7 +40,6 @@ const initialState = {
   status: null,
   error: null,
   credentials: [],
-  test: "hello",
 
   user: {
     user_id: "",
@@ -53,7 +50,6 @@ const initialState = {
   },
 
   categories: ["None", "React", "JavaScript", "HTML", "CSS"],
-  ownedTickets: [],
   tickets: [],
   isAdmin: false
 };
@@ -240,16 +236,6 @@ const reducers = (state = initialState, action) => {
         tickets: assignedTicket
       };
     case ASSIGN_TICKET_FAIL:
-      return {
-        ...state,
-        error: action.payload
-      };
-    case FETCH_TICKET_SUCCESS:
-      return {
-        ...state,
-        ownedTickets: action.payload
-      };
-    case FETCH_TICKET_FAIL:
       return {
         ...state,
         error: action.payload

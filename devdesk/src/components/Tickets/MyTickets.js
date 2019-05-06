@@ -7,7 +7,6 @@ import { ItemDiv } from "../../helpers";
 import TicketItem from "./TicketItem";
 
 const test = props => {
-  // const user = JSON.parse(localStorage.getItem("user"));
   const ownedTickets = props.tickets.filter(
     ticket => ticket.user_id === props.user.user_id
   );
