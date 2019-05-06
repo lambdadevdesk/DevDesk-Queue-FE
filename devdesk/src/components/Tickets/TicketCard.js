@@ -13,8 +13,6 @@ const TicketCard = props => {
     ticket => `${ticket.id}` === props.match.params.id
   );
 
-  // const user = JSON.parse(localStorage.getItem("user"));
-
   return (
     <Dashboard>
       <CardDiv>

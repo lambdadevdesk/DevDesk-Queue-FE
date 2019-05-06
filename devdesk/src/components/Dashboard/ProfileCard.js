@@ -1,16 +1,8 @@
 import React from "react";
 
-import styled from "styled-components";
+import { ProfileDiv } from "../../helpers";
 
 const ProfileCard = props => {
-  const ProfileDiv = styled.div`
-    color: black;
-    margin: 2rem 0;
-    line-height: 1.5;
-  `;
-
-  // const user = JSON.parse(localStorage.getItem("user"));
-
   return (
     <ProfileDiv className="profile-panel">
       <div className="profile-header">

@@ -14,12 +14,20 @@ import { loadState, saveState } from "./helpers/LocalStorage";
 
 const persistedState = loadState();
 
+/* 
+  Persisted state initializes the reducers state with the state previously saved in localStorage.
+  setToken stores the JWT retrevied from the server and sets it to localStorage. It is a custom middleware.
+*/
 const store = createStore(
   rootReducer,
   persistedState,
   applyMiddleware(thunk, setToken)
 );
 
+/* 
+  Stores the changes made to these state values inside the localStorage helper function whenever the state changes.
+  Need to install lodash and use the throttle function to make sure this isn't being saved every second.
+*/
 store.subscribe(() => {
   saveState({
     user: store.getState().user,
