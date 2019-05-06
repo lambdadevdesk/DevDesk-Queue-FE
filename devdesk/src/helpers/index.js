@@ -224,8 +224,8 @@ export const DashboardDiv = styled.div`
     background: #fff;
   }
   .dash-main {
-    width: 85%;
-    background: linear-gradient(to bottom right, #1e50ee 25%, #08addd 65%);
+    width: 90%;
+    background: #55596d;
   }
 
   .profile-panel {
