@@ -13,7 +13,7 @@ class TicketForm extends Component {
       category: "",
       resolved: false,
       assigned: false,
-      user_id: this.props.user.username
+      user_id: this.props.user.user_id
     }
   };
 
