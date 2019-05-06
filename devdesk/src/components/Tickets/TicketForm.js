@@ -6,7 +6,7 @@ import { addTicket } from "../../actions";
 import Dashboard from "../Dashboard/Dashboard";
 
 class TicketForm extends Component {
-  user = JSON.parse(localStorage.getItem("user"));
+  // user = JSON.parse(localStorage.getItem("user"));
   state = {
     ticket: {
       title: "",
@@ -14,7 +14,7 @@ class TicketForm extends Component {
       category: "",
       resolved: false,
       assigned: false,
-      user_id: this.user.user_id
+      user_id: this.props.user.user_id
     }
   };
 
@@ -78,6 +78,7 @@ class TicketForm extends Component {
 const mapStateToProps = state => {
   return {
     tickets: state.tickets,
+    user: state.user,
     categories: state.categories
   };
 };

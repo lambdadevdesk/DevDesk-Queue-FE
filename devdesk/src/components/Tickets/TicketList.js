@@ -16,11 +16,12 @@ class TicketList extends React.Component {
     this.props.assignTicket(id, ticket);
   };
 
-  user = JSON.parse(localStorage.getItem("user"));
+  // user = JSON.parse(localStorage.getItem("user"));
 
   render() {
+    console.log(this.props.test);
     return (
-      <Dashboard user={this.user}>
+      <Dashboard user={this.props.user}>
         <ItemDiv>
           {this.props.tickets.map(ticket => (
             <TicketItem
@@ -35,7 +36,7 @@ class TicketList extends React.Component {
               assignedUser={ticket.assigned_user}
               description={ticket.description}
               assignTicket={this.assignTicket}
-              userRole={this.user.isAdmin}
+              userRole={this.props.user.isAdmin}
             />
           ))}
         </ItemDiv>
@@ -46,7 +47,9 @@ class TicketList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    tickets: state.tickets
+    tickets: state.tickets,
+    user: state.user,
+    test: state.test
   };
 };
 

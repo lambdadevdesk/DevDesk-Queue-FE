@@ -9,24 +9,24 @@ const ProfileCard = props => {
     line-height: 1.5;
   `;
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <ProfileDiv className="profile-panel">
       <div className="profile-header">
         <img src="" alt="" />
         <h1>
-          {user.username[0].toUpperCase()}
-          {user.username.slice(1, user.username.length)}
+          {props.user.username[0].toUpperCase()}
+          {props.user.username.slice(1, props.user.username.length)}
         </h1>
       </div>
       <div className="profile-content">
         <p>
-          {user.lastName}, {user.firstName}
+          {props.user.lastName}, {props.user.firstName}
         </p>
-        <p>{user.email}</p>
-        <p>{user.cohort}</p>
-        <p>ID: {user.user_id}</p>
+        <p>{props.user.email}</p>
+        <p>{props.user.cohort}</p>
+        <p>ID: {props.user.user_id}</p>
       </div>
     </ProfileDiv>
   );

@@ -7,14 +7,14 @@ import { ItemDiv } from "../../helpers";
 import TicketItem from "./TicketItem";
 
 const test = props => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
   const ownedTickets = props.tickets.filter(
-    ticket => ticket.user_id === user.user_id
+    ticket => ticket.user_id === props.user.user_id
   );
   const claimedTickets = props.tickets.filter(
-    ticket => ticket.assigned_user === user.user_id
+    ticket => ticket.assigned_user === props.user.user_id
   );
-  if (user.isAdmin) {
+  if (props.user.isAdmin) {
     return (
       <Dashboard>
         <ItemDiv>
@@ -61,7 +61,8 @@ const test = props => {
 
 const mapStateToProps = state => {
   return {
-    tickets: state.tickets
+    tickets: state.tickets,
+    user: state.user
   };
 };
 

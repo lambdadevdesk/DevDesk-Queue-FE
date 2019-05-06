@@ -42,18 +42,19 @@ const initialState = {
   status: null,
   error: null,
   credentials: [],
+  test: "hello",
 
   user: {
-    id: "",
+    user_id: "",
     cohort: null,
     email: "",
     role: "",
     username: ""
   },
 
+  categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   ownedTickets: [],
   tickets: [],
-  categories: ["None", "React", "JavaScript", "HTML", "CSS"],
   isAdmin: false
 };
 

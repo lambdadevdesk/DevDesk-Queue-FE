@@ -10,8 +10,24 @@ import App from "./App";
 import rootReducer from "./reducers";
 
 import { setToken } from "./auth/token";
+import { loadState, saveState } from "./helpers/LocalStorage";
 
-const store = createStore(rootReducer, applyMiddleware(thunk, setToken));
+const persistedState = loadState();
+
+const store = createStore(
+  rootReducer,
+  persistedState,
+  applyMiddleware(thunk, setToken)
+);
+
+store.subscribe(() => {
+  saveState({
+    user: store.getState().user,
+    tickets: store.getState().tickets,
+    isLoggedIn: store.getState().isLoggedIn,
+    categories: store.getState().categories
+  });
+});
 
 ReactDOM.render(
   <Provider store={store}>

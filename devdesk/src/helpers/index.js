@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 //Styled-Components for App Component
 
 export const MainDivApp = styled.div`

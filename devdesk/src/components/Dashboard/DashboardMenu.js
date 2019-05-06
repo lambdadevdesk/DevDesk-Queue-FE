@@ -1,21 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { DashNav } from "../../helpers";
 import ProfileCard from "../ProfileCard";
 
-const user = JSON.parse(localStorage.getItem("user"));
+// const user = JSON.parse(localStorage.getItem("user"));
 
 const DashboardMenu = props => {
   return (
     <DashNav className="dash-panel">
-      <ProfileCard />
+      <ProfileCard user={props.user} />
       <ul>
         <Link to="/new-ticket">
           <li>Create Ticket</li>
         </Link>
         <Link to="/my-tickets">
-          {user.isAdmin ? <li>Claimed Tickets</li> : <li>My Tickets</li>}
+          {props.user.isAdmin ? <li>Claimed Tickets</li> : <li>My Tickets</li>}
         </Link>
         <Link to="/tickets">
           <li>Opened Tickets</li>
@@ -25,4 +26,10 @@ const DashboardMenu = props => {
   );
 };
 
-export default DashboardMenu;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(DashboardMenu);
