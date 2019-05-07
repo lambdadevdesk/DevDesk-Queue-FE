@@ -391,23 +391,25 @@ export const CardDiv = styled.div`
   justify-content: space-between;
   align-content: space-between;
   background: white;
-  .meta-data {
-    margin-bottom: 5px;
-    h2 {
-      margin-bottom: 5px;
-    }
-  }
-  .ticket-content {
-    h2 {
-      margin-top: 10px;
-      font-weight: bold;
-    }
+  .top-content {
+    display: flex;
+    justify-content: space-between;
 
-    p {
-      margin-top: 10px;
-      line-height: 18px;
+    .meta-data {
+      width: 15%;
+      margin-bottom: 5px;
+      h2 {
+        margin-bottom: 5px;
+      }
+    }
+    .title {
+      width: 75%;
+      text-align: center;
+      font-size: 1.4rem;
+      margin-right: 115px;
     }
     .button-div {
+      width: 10%;
       button {
         padding: 0.5rem 0.5rem;
         background: #bb1333;
@@ -423,6 +425,13 @@ export const CardDiv = styled.div`
           background: #efeff3;
         }
       }
+    }
+  }
+  .ticket-content {
+    p {
+      margin-top: 10px;
+      font-weight: bold;
+      word-break: break-word;
     }
   }
 `;

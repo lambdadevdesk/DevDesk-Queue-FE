@@ -16,12 +16,15 @@ const TicketCard = props => {
   return (
     <Dashboard>
       <CardDiv>
-        <div className="meta-data">
-          <h2>Number: #{ticket.id}</h2>
-          <h2>Category: {ticket.category}</h2>
-          <h2>Status: {ticket.resolved ? "Closed" : "Open"}</h2>
-        </div>
-        <div className="ticket-content">
+        <div className="top-content">
+          <div className="meta-data">
+            <h2>Number: #{ticket.id}</h2>
+            <h2>Category: {ticket.category}</h2>
+            <h2>Status: {ticket.resolved ? "Closed" : "Open"}</h2>
+          </div>
+          <div className="title">
+            <h2>{ticket.title}</h2>
+          </div>
           <div className="button-div">
             {props.user.isAdmin ? (
               <button onClick={() => props.resolveTicket(ticket.id, ticket)}>
@@ -33,7 +36,8 @@ const TicketCard = props => {
               </Link>
             )}
           </div>
-          <h2>{ticket.title}</h2>
+        </div>
+        <div className="ticket-content">
           <p>{ticket.description}</p>
         </div>
       </CardDiv>
