@@ -1,6 +1,6 @@
 # DevDesk-Queue-Front-End
 
-Application URL: https://suspicious-yalow-77c7a7.netlify.com/Login
+Application URL: https://suspicious-yalow-77c7a7.netlify.com
 API URL: https://devdeskqueue-be.herokuapp.com/api/
 
 ## Project Description 
