@@ -9,15 +9,15 @@ Students at Lambda School need a place where they can escalate their concerns an
 
         // Table of Contents \\
 
-# Installation
+### Installation
 
-# Usage
+### Usage
 
-# Contributing
+### Contributing
 
-# Credits
+### Credits
 
-# License
+### License
 
 
 # Installation
