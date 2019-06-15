@@ -62,9 +62,11 @@ Students at Lambda School need a place where they can escalate their concerns an
     The hardcoded user accounts may be changed at any time. Any changes made will be noted in this ReadMe file. 
 ```
 # Contributing
-
-    Please feel free to contribute to the project through Pull Requests. There is a great possibility that the original development team will no longer be maintaining the code base after 05/06/2019. The current frontend managers will be updated in this ReadMe.
-
+```
+    Please feel free to contribute to the project through Pull Requests. 
+    There is a great possibility that the original development team will no longer be maintaining the code base after 05/06/2019. 
+    The current frontend managers will be updated in this ReadMe.
+```
 # Credits
 ```
     Seun O - Front End Engineer
