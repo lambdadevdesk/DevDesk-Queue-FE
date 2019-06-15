@@ -9,29 +9,29 @@ Students at Lambda School need a place where they can escalate their concerns an
 
         // Table of Contents \\
 
-#Installation
+# Installation
 
-#Usage
+# Usage
 
-#Contributing
+# Contributing
 
-#Credits
+# Credits
 
-#License
+# License
 
 
-#Installation
+# Installation
 
     In the `devdesk` directory run `npm install` or `yarn install` to install the necessary dependencies to run your localhost dev server.
 
     From there you can run `npm start` or `yarn start` to launch your local development server.
 
-#Usage
+# Usage
 
     The local development server should launch at localhost://3000 and should be responsive to any edits you make in ypur code editor.
 
     The code utilizes Redux to connect to the API that is deployed on heroku. To gain access to the private routes that are locked on the API. You can use the hardcoded user accounts located on the server.
-
+```
     Admin User:
             Username: admin
             Password: testadmin123
@@ -60,17 +60,18 @@ Students at Lambda School need a place where they can escalate their concerns an
     ***NOTICE***
     
     The hardcoded user accounts may be changed at any time. Any changes made will be noted in this ReadMe file. 
-
-#Contributing
+```
+# Contributing
 
     Please feel free to contribute to the project through Pull Requests. There is a great possibility that the original development team will no longer be maintaining the code base after 05/06/2019. The current frontend managers will be updated in this ReadMe.
 
-#Credits
-
+# Credits
+```
     Seun O - Front End Engineer
     Mychal Hall - Front End Engineer
+```
 
-#License
+# License
 
     MIT License
 
