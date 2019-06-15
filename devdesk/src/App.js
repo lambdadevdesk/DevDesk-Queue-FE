@@ -8,7 +8,6 @@ import TicketViews from "./views/TicketViews";
 import SignUp from "./components/SignUp";
 import TicketForm from "./components/Tickets/TicketForm";
 import TicketCard from "./components/Tickets/TicketCard";
-import HomePage from "./components/HomePage";
 import Edit from "./components/Tickets/Edit";
 import MyTickets from "./components/Tickets/MyTickets";
 
@@ -16,8 +15,8 @@ function App() {
   return (
     <Router>
       <Layout>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/login" component={Login} />
+        {/* <Route path="/" exact component={HomePage} /> */}
+        <Route path="/" exact component={Login} />
         <PrivateRoute
           path="/tickets/:id"
           exact

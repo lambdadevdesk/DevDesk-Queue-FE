@@ -179,3 +179,16 @@ export const signup = user => dispatch => {
       dispatch({ type: SIGNUP_FAIL, payload: err.response });
     });
 };
+
+export const GET_USER = "GET_USER";
+export const GET_USER_FAIL = "GET_USER_FAIL";
+export const getUser = id => dispatch => {
+  axiosAuth()
+    .get(`https://devdeskqueue-be.herokuapp.com/api/users/${id}`)
+    .then(res => {
+      dispatch({ type: GET_USER, payload: res.data.username });
+    })
+    .catch(err => {
+      dispatch({ type: GET_USER_FAIL, payload: err });
+    });
+};

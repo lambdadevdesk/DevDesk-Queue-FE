@@ -30,7 +30,7 @@ class SignUp extends Component {
     e.preventDefault();
     this.props.signup(this.state.user).then(() => {
       setTimeout(() => {
-        this.props.history.push("/login");
+        this.props.history.push("/");
       }, 1500);
     });
     setTimeout(() => {
@@ -113,7 +113,7 @@ class SignUp extends Component {
           </div>
           <div className="extra">
             <p>
-              Already have an Account? <Link to="/login">Log in!</Link>
+              Already have an Account? <Link to="/">Log in!</Link>
             </p>
           </div>
         </LoginForm>

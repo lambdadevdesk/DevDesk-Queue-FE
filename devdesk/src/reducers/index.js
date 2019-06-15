@@ -24,7 +24,9 @@ import {
   SIGNUP_START,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
-  SIGNUP_RESOLVED
+  SIGNUP_RESOLVED,
+  GET_USER,
+  GET_USER_FAIL
 } from "../actions";
 
 const initialState = {
@@ -41,6 +43,7 @@ const initialState = {
   error: null,
   credentials: [],
 
+  users: [],
   user: {
     user_id: "",
     cohort: null,
@@ -236,6 +239,16 @@ const reducers = (state = initialState, action) => {
         tickets: assignedTicket
       };
     case ASSIGN_TICKET_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case GET_USER:
+      return {
+        ...state,
+        users: ``
+      };
+    case GET_USER_FAIL:
       return {
         ...state,
         error: action.payload
